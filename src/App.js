@@ -19,9 +19,9 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<All />} />
-          <Route path="term" element={<Term />} />
-          <Route path="privacy" element={<Privacy />} />
-          <Route path="test" element={<Test />} />
+          <Route path="/term" element={<Term />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </Router>
     </>
