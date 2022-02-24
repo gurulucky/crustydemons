@@ -1,6 +1,9 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import {
+	Link
+  } from "react-router-dom";
 import Web3 from 'web3'
 import WertWidget from '@wert-io/widget-initializer';
 import { signSmartContractData } from '@wert-io/widget-sc-signer';
@@ -280,7 +283,8 @@ export default function Home() {
 							<Button value={30} onClick={(e) => setQuantity(e.target.value)} className="mint_counter_btn" > 30 </Button>
 						</div>
 					</div> */}
-					<p className="coming">Coming Soon</p>
+					<p className="coming">Coming Soon<Link to="test" style={{color:'white', textDecoration:'none'}}>.</Link></p>
+					
 					{/* <div style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }} >
 						{
 							initWeb3 ?
