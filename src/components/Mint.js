@@ -280,8 +280,8 @@ export default function Home() {
 							<Button value={30} onClick={(e) => setQuantity(e.target.value)} className="mint_counter_btn" > 30 </Button>
 						</div>
 					</div>
-					{/* <p className="coming">Coming Soon</p> */}
-					<div style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }} >
+					<p className="coming">Coming Soon</p>
+					{/* <div style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }} >
 						{
 							initWeb3 ?
 								<Button disabled={minting} className="buy_btn" onClick={conMetamask} >
@@ -303,7 +303,7 @@ export default function Home() {
 								My collections
 							</span>
 						</Nav.Link >
-					}
+					} */}
 					<Nav.Link href="https://ropsten.etherscan.io/address/0x53254267052c7797f1275C9E53bD22accd8a1c48" className="view_contract" target="_blank"> View Contract </Nav.Link>
 
 				</div >
