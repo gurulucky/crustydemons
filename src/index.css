@@ -1,0 +1,28 @@
+html {
+    background-color: rgb(0,0,0);
+}
+
+@font-face {
+  font-family: 'Collonse';
+  src: local('Collonse'), url(./fonts/Collonse/CollonseBoldBold-gxJ16.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'SnowBlue';
+  src: local('SnowBlue'), url(./fonts/SnowBlue/SnowBlue-OVVwd.otf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Bosnia';
+  src: local('Bosnia'), url(./fonts/Bosnia/Bosnia-j6jR.otf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Elena';
+  src: local('Elena'), url(./fonts/Elena/ElenaLight-vL17.otf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Marko Rough Demo';
+  src: local('Marko'), url(./fonts/Marko/MarkoRoughDemo-vmXgL.otf) format('truetype');
+}
