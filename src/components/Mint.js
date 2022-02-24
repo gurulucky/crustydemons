@@ -265,7 +265,7 @@ export default function Home() {
 				</div>
 				<h1>Limited 10,000 unique collection of utility packed Crusty Demons Club NFTs.</h1>
 				<div className="mint_section">
-					<div className="mint_section_body">
+					{/* <div className="mint_section_body">
 						<p> Total Minted: < span className="mint_color" > {`${totalMinted} / 10000`} </span></p>
 						<p> <span className="mint_color" > Mint </span> Crusty Demons Club NFT</p>
 						<p> Price: < span className="mint_color" > {`${PRICE} Eth + Gas Fee`} </span></p>
@@ -279,7 +279,7 @@ export default function Home() {
 							<Button value={10} onClick={(e) => setQuantity(e.target.value)} className="mint_counter_btn"> 10 </Button>
 							<Button value={30} onClick={(e) => setQuantity(e.target.value)} className="mint_counter_btn" > 30 </Button>
 						</div>
-					</div>
+					</div> */}
 					<p className="coming">Coming Soon</p>
 					{/* <div style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }} >
 						{
