@@ -304,7 +304,7 @@ export default function Home() {
 							</span>
 						</Nav.Link >
 					} */}
-					<Nav.Link href="https://ropsten.etherscan.io/address/0x53254267052c7797f1275C9E53bD22accd8a1c48" className="view_contract" target="_blank"> View Contract </Nav.Link>
+					{/* <Nav.Link href="https://ropsten.etherscan.io/address/0x53254267052c7797f1275C9E53bD22accd8a1c48" className="view_contract" target="_blank"> View Contract </Nav.Link> */}
 
 				</div >
 			</div>
