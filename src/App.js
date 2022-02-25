@@ -21,7 +21,7 @@ function App() {
           <Route exact path="/" element={<All />} />
           <Route path="/term" element={<Term />} />
           <Route path="/privacy" element={<Privacy />} />
-          <Route path="/test" element={<Test />} />
+          <Route path="/vip" element={<Test />} />
         </Routes>
       </Router>
     </>
