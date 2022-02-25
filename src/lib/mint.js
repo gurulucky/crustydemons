@@ -22,7 +22,7 @@ fetch(Input)
 				TOKEN_URIS.push(element);
 			}
 		}
-		// console.log(TOKEN_URIS)
+		console.log(TOKEN_URIS)
 })
 
 export const mint = async (account, amount) => {
