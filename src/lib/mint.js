@@ -14,6 +14,7 @@ const TOKEN_URIS = [];
 fetch(Input)
 	.then((r) => r.text())
 	.then(text  => {
+        console.log(text)
 		const lines = text.split("\r\n");
 		for(var line = 1; line < lines.length; line ++){
 			if(lines[line]){
