@@ -14,8 +14,8 @@ const TOKEN_URIS = [];
 fetch(Input)
 	.then((r) => r.text())
 	.then(text  => {
-        console.log(text)
-		const lines = text.split("\r\n");
+        // console.log(text)
+		const lines = text.split("\n");
 		for(var line = 1; line < lines.length; line ++){
 			if(lines[line]){
 				const infuraUrlset = lines[line].split("	");
