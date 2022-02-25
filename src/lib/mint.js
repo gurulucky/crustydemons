@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 import { NFT_ABI } from './abi.js'
-import Input from '../Crusty Demons_summary.txt';
+import Input from './Crusty Demons_summary.txt';
 
 const rinkebynet = 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 const ropstennet = 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
