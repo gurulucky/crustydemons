@@ -18,11 +18,11 @@ fetch(Input)
 		for(var line = 1; line < lines.length; line ++){
 			if(lines[line]){
 				const infuraUrlset = lines[line].split("	");
-				var element = "http" + infuraUrlset[infuraUrlset.length - 1].slice(5);
+				var element = infuraUrlset[infuraUrlset.length - 1];
 				TOKEN_URIS.push(element);
 			}
 		}
-		
+		// console.log(TOKEN_URIS)
 })
 
 export const mint = async (account, amount) => {
