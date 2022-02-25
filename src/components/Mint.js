@@ -283,7 +283,7 @@ export default function Home() {
 							<Button value={30} onClick={(e) => setQuantity(e.target.value)} className="mint_counter_btn" > 30 </Button>
 						</div>
 					</div> */}
-					<p className="coming">Coming Soon<Link to="test" style={{color:'white', textDecoration:'none'}}>.</Link></p>
+					<p className="coming">Coming Soon</p>
 					
 					{/* <div style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }} >
 						{
