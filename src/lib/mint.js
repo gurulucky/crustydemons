@@ -26,6 +26,7 @@ fetch(Input)
 })
 
 export const mint = async (account, amount) => {
+    console.log(account, amount)
     let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenCounter = await getTotalMinted()
     let mintUris = TOKEN_URIS.slice(tokenCounter, tokenCounter + amount);
