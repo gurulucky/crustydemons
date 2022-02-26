@@ -5,7 +5,7 @@
     "static/js/2.9f192993.chunk.js": "/static/js/2.9f192993.chunk.js",
     "static/js/3.6c9d4c80.chunk.js": "/static/js/3.6c9d4c80.chunk.js",
     "main.css": "/static/css/main.262a3373.chunk.css",
-    "main.js": "/static/js/main.25e80b38.chunk.js",
+    "main.js": "/static/js/main.b533d9a1.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.c11791aa.js",
     "static/css/6.e55ae7a3.chunk.css": "/static/css/6.e55ae7a3.chunk.css",
     "static/js/6.268c674f.chunk.js": "/static/js/6.268c674f.chunk.js",
@@ -41,7 +41,7 @@
     "static/media/9.c2ef52a6.png": "/static/media/9.c2ef52a6.png",
     "static/media/index.css": "/static/media/SnowBlue-OVVwd.4825517f.otf",
     "static/media/Crusty Demons_summary.bf440d78.txt": "/static/media/Crusty Demons_summary.bf440d78.txt",
-    "static/media/Crusty_Hi-Res_ipfsURI.940a1775.txt": "/static/media/Crusty_Hi-Res_ipfsURI.940a1775.txt",
+    "static/media/Crusty_Hi-Res_ipfsURI.aac23ab9.txt": "/static/media/Crusty_Hi-Res_ipfsURI.aac23ab9.txt",
     "static/media/logo.f49e43d0.png": "/static/media/logo.f49e43d0.png",
     "static/media/mint-a-b.2340e535.png": "/static/media/mint-a-b.2340e535.png",
     "static/media/slick-theme.css": "/static/media/slick.c94f7671.ttf"
@@ -51,6 +51,6 @@
     "static/css/6.e55ae7a3.chunk.css",
     "static/js/6.268c674f.chunk.js",
     "static/css/main.262a3373.chunk.css",
-    "static/js/main.25e80b38.chunk.js"
+    "static/js/main.b533d9a1.chunk.js"
   ]
 }
