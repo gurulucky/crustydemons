@@ -111,6 +111,7 @@ export const getSignatureForMint = async (account, amount) => {
     const web3 = new Web3(mainnet)
     let tokenCounter = await getTotalMinted()
     let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
+    console.log(mintUris)
     let signature = web3.eth.abi.encodeFunctionCall(
         {
             "inputs": [
