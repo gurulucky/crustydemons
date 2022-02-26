@@ -78,7 +78,7 @@ export default function Test() {
                 }
                 conMetamask();
             });
-            // conMetamask();
+            conMetamask();
         } else {
             initWeb3Modal()
         }
@@ -112,6 +112,7 @@ export default function Test() {
                 }
                 const accounts = await window.ethereum.enable();
                 console.log(accounts);
+                dispatch(setWallet(accounts[0]))
                 // console.log(await window.web3.eth.getBalance(accounts[0]));
                 if (accounts[0] && e) {
                     setMinting(true);
@@ -302,11 +303,11 @@ export default function Test() {
                     </div >
                     {
                         wallet &&
-                        <Nav.Link href={`https://opensea.io/${wallet}`} target='_blank' style={{ textDecoration: 'none' }}>
-                            < span className="mint_color" >
+                        <Link to='/collection' className='mint_section_body' style={{textDecoration:'none'}}>
+                            < p className="mint_color">
                                 My collections
-                            </span>
-                        </Nav.Link >
+                            </p>
+                        </Link >
                     }
                     <Nav.Link href="https://ropsten.etherscan.io/address/0x53254267052c7797f1275C9E53bD22accd8a1c48" className="view_contract" target="_blank"> View Contract </Nav.Link>
 
