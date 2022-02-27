@@ -286,7 +286,7 @@ export default function Test() {
                             <Button value={30} onClick={(e) => setQuantity(e.target.value)} className="mint_counter_btn" > 30 </Button>
                         </div>
                     </div>
-                    <div style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }} >
+                    <div style={{ marginLeft: 'auto', marginRight: 'auto' }} >
                         {
                             initWeb3 ?
                                 <Button disabled={minting} className="buy_btn" onClick={conMetamask} >
@@ -294,6 +294,11 @@ export default function Test() {
                                 </Button>
                                 :
                                 <>
+                                    <h1 style={{ textAlign: 'center', margin: '0px', marginTop: '10px', color: 'yellow' }}>
+                                        {
+                                            wallet?`${wallet}` : `No Wallet Detected`
+                                        }
+                                    </h1>
                                     <Button disabled={!web3authReady} className="buy_btn" onClick={handleBuy} >
                                         {wallet ? `Mint using Cash / Fiat` : `Create Wallet Using Email Address`}
                                     </Button>
@@ -303,7 +308,7 @@ export default function Test() {
                     </div >
                     {
                         wallet &&
-                        <Link to='/collection' className='mint_section_body' style={{textDecoration:'none'}}>
+                        <Link to='/collection' className='mint_section_body' style={{ textDecoration: 'none' }}>
                             < p className="mint_color">
                                 My collections
                             </p>

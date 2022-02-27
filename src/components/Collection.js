@@ -25,7 +25,7 @@ const NftItem = ({ nft }) => {
                 <a href={nft.highUri} download target='_blank' style={{ textDecoration: 'none' }}>
                     <Button variant="primary" className='buy_btn'>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <BsFillLockFill />Unlock content
+                            <BsFillLockFill />Unlockable content
 
                         </div>
                     </Button>
@@ -60,10 +60,11 @@ export default function Collection() {
     return (
         <section id="term">
             <Container>
-                <h1 style={{ textDecoration: 'none' }}>
-                    Collections
+                <div style={{paddingTop:'40px', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+                    <span id="freeticket">My collections</span>
                     <span className="go_mainpage"><Link to="/"> - GO TO MAIN PAGE - </Link></span>
-                </h1>
+                </div>
+
                 {
                     loadingAssets ?
                         <div style={{
