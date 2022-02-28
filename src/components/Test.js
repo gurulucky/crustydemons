@@ -304,7 +304,7 @@ export default function Test() {
                                 </Button>
                                 :
                                 <>
-                                    <h1 style={{ textAlign: 'center', margin: '0px', marginTop: '10px', color: 'yellow', display:'flex', alignItems:'center', justifyContent:'center' }}>
+                                    <h1 style={{ textAlign: 'center', margin: '0px', marginTop: '10px', color: 'yellow', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         {
                                             wallet ? `${shortAddress(wallet)}` : `No Wallet Detected`
                                         }
@@ -330,7 +330,7 @@ export default function Test() {
                             </p>
                         </Link >
                     }
-                    <Nav.Link href="https://ropsten.etherscan.io/address/0x53254267052c7797f1275C9E53bD22accd8a1c48" className="view_contract" target="_blank"> View Contract </Nav.Link>
+                    <a href="https://ropsten.etherscan.io/address/0x53254267052c7797f1275C9E53bD22accd8a1c48" className="view_contract" target="_blank"><p>View Contract</p>  </a>
 
                 </div >
             </div>

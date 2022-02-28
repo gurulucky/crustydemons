@@ -195,9 +195,9 @@ body {
 
 .view_contract {
     font-size: 1rem !important;
-    text-decoration: underline !important;
-    text-align: center;
-    color: #00c571;
+    text-decoration: none !important;
+    text-align: center !important;
+    color: #c5005c;
     letter-spacing: 0;
     padding: 0 !important;
 }
