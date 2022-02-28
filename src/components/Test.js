@@ -326,7 +326,7 @@ export default function Test() {
                         wallet &&
                         <Link to='/collection' className='mint_section_body' style={{ textDecoration: 'none' }}>
                             < p className="mint_color">
-                                My collections
+                                My Collections
                             </p>
                         </Link >
                     }

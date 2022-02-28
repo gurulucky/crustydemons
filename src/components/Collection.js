@@ -63,7 +63,7 @@ export default function Collection() {
         <section id="term">
             <Container>
                 <div style={{ paddingTop: '40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span id="freeticket">My collections</span>
+                    <span id="freeticket">My Collections</span>
                     <span className="go_mainpage"><Link to="/"> - GO TO MAIN PAGE - </Link></span>
                 </div>
 
