@@ -14,12 +14,12 @@ const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
 const NftItem = ({ nft }) => {
     return (
         <Card >
-            <Card.Img variant="top" src={nft.image} style={{ maxWidth: '360px', maxHeight: '360px', width: 'auto', height: 'auto' }} />
+            <a href={nft.metadataUri} target='_blank'>
+                <Card.Img variant="top" src={nft.image}/>
+            </a>
             <Card.Body>
                 <Card.Title style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <a href={nft.metadataUri} target='_blank'>
-                        {nft.name}
-                    </a>
+                    {nft.name}
                     <a href={`https://testnets.opensea.io/assets/${NFT_ADDRESS}/${nft.tokenId}`} target='_blank'>
                         <img src='/opensea.png' width='30px' height='30px' />
                     </a>
