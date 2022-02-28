@@ -17,7 +17,9 @@ const NftItem = ({ nft }) => {
             <Card.Img variant="top" src={nft.image} style={{ maxWidth: '360px', maxHeight: '360px', width: 'auto', height: 'auto' }} />
             <Card.Body>
                 <Card.Title style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    {nft.name}
+                    <a href={nft.metadataUri} target='_blank'>
+                        {nft.name}
+                    </a>
                     <a href={`https://testnets.opensea.io/assets/${NFT_ADDRESS}/${nft.tokenId}`} target='_blank'>
                         <img src='/opensea.png' width='30px' height='30px' />
                     </a>
@@ -60,7 +62,7 @@ export default function Collection() {
     return (
         <section id="term">
             <Container>
-                <div style={{paddingTop:'40px', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+                <div style={{ paddingTop: '40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <span id="freeticket">My collections</span>
                     <span className="go_mainpage"><Link to="/"> - GO TO MAIN PAGE - </Link></span>
                 </div>

@@ -16,13 +16,13 @@ import { CHAIN_NAMESPACES } from "@web3auth/base";
 // 	mintNFT
 // } from "./Interact.js";
 import { Image, Button, Nav } from 'react-bootstrap'
+import { BsClipboard } from 'react-icons/bs'
 import home_nft from '../assets/images/mint-a-b.png'
 
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { setWallet } from '../actions/manager';
-import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint } from '../lib/mint';
+import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress } from '../lib/mint';
 
 const PRICE = Number(process.env.REACT_APP_PRICE)
 const NETWORK = process.env.REACT_APP_NETWORK;
@@ -260,6 +260,16 @@ export default function Test() {
         }
     }
 
+    const copy = async () => {
+        await navigator.clipboard.writeText(wallet)
+        toast.info(`address copied.`, {
+            position: "top-right",
+            autoClose: 3000,
+            closeOnClick: true,
+            hideProgressBar: true,
+        });
+    }
+
     return (
         <section id="mint">
             <div className='my_container'>
@@ -294,9 +304,15 @@ export default function Test() {
                                 </Button>
                                 :
                                 <>
-                                    <h1 style={{ textAlign: 'center', margin: '0px', marginTop: '10px', color: 'yellow' }}>
+                                    <h1 style={{ textAlign: 'center', margin: '0px', marginTop: '10px', color: 'yellow', display:'flex', alignItems:'center', justifyContent:'center' }}>
                                         {
-                                            wallet?`${wallet}` : `No Wallet Detected`
+                                            wallet ? `${shortAddress(wallet)}` : `No Wallet Detected`
+                                        }
+                                        {
+                                            wallet &&
+                                            <Button className="copy_btn" onClick={copy}>
+                                                <BsClipboard />
+                                            </Button>
                                         }
                                     </h1>
                                     <Button disabled={!web3authReady} className="buy_btn" onClick={handleBuy} >

@@ -6,6 +6,9 @@ import {
   Route,
 } from "react-router-dom";
 
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import All from './components/All'
 import Term from './components/Term';
 import Privacy from './components/Privacy';
@@ -25,6 +28,7 @@ function App() {
           <Route path="/vip" element={<Test />} />
           <Route path='/collection' element={<Collection />} />
         </Routes>
+        <ToastContainer/>
       </Router>
     </>
   );

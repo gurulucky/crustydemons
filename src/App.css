@@ -249,6 +249,20 @@ body {
     color: #A69490 !important;
 }
 
+.copy_btn {
+    width: 2rem;
+    height: 2rem;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    padding: 0 !important;
+    font-size: 1.4rem !important;
+    font-family: 'Roboto', sans-serif;
+    border: 0px solid #A69490 !important;
+    background: none !important;
+    /* border-radius: 50% !important; */
+    color: #A69490 !important;
+}
+
 .counter_form span {
     font-size: 1.5rem !important;
     color: rgb(156, 156, 172) !important;
@@ -260,6 +274,11 @@ body {
 }
 
 .mint_counter_btn1:hover {
+    background-color: #77019969 !important;
+    transition: 0.1s;
+}
+
+.copy_btn:hover{
     background-color: #77019969 !important;
     transition: 0.1s;
 }

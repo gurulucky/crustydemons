@@ -23,7 +23,7 @@ export const getNFTsWithHighResImage = async (nftIds) => {
       for (let i = 0; i < tokenURIs.length; i++) {
         try {
           let nft = (await axios.get(tokenURIs[i])).data
-          nfts.push({ ...nft, tokenId: nftIds[i], highUri: highURIs[i] })
+          nfts.push({ ...nft, metadataUri:tokenURIs[i], tokenId: nftIds[i], highUri: highURIs[i] })
         } catch (err) {
   
         }
