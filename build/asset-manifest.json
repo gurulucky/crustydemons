@@ -5,10 +5,10 @@
     "static/js/2.94bbc239.chunk.js": "/static/js/2.94bbc239.chunk.js",
     "static/js/3.104407c6.chunk.js": "/static/js/3.104407c6.chunk.js",
     "main.css": "/static/css/main.754c8b93.chunk.css",
-    "main.js": "/static/js/main.6d0b18c2.chunk.js",
+    "main.js": "/static/js/main.8387d3f0.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.f35ee1e5.js",
     "static/css/6.e55ae7a3.chunk.css": "/static/css/6.e55ae7a3.chunk.css",
-    "static/js/6.fe8041d0.chunk.js": "/static/js/6.fe8041d0.chunk.js",
+    "static/js/6.058edda7.chunk.js": "/static/js/6.058edda7.chunk.js",
     "static/js/7.b26a9d5b.chunk.js": "/static/js/7.b26a9d5b.chunk.js",
     "static/js/8.4c0ab6b6.chunk.js": "/static/js/8.4c0ab6b6.chunk.js",
     "static/js/9.90b9cf70.chunk.js": "/static/js/9.90b9cf70.chunk.js",
@@ -24,7 +24,7 @@
     "index.html": "/index.html",
     "static/js/0.fd57738c.chunk.js.LICENSE.txt": "/static/js/0.fd57738c.chunk.js.LICENSE.txt",
     "static/js/2.94bbc239.chunk.js.LICENSE.txt": "/static/js/2.94bbc239.chunk.js.LICENSE.txt",
-    "static/js/6.fe8041d0.chunk.js.LICENSE.txt": "/static/js/6.fe8041d0.chunk.js.LICENSE.txt",
+    "static/js/6.058edda7.chunk.js.LICENSE.txt": "/static/js/6.058edda7.chunk.js.LICENSE.txt",
     "static/js/8.4c0ab6b6.chunk.js.LICENSE.txt": "/static/js/8.4c0ab6b6.chunk.js.LICENSE.txt",
     "static/media/App.css": "/static/media/Utility.b3bdeec9.png",
     "static/media/10.3ec57a66.png": "/static/media/10.3ec57a66.png",
@@ -40,8 +40,8 @@
     "static/media/8.6116e9e4.png": "/static/media/8.6116e9e4.png",
     "static/media/9.c2ef52a6.png": "/static/media/9.c2ef52a6.png",
     "static/media/index.css": "/static/media/SnowBlue-OVVwd.4825517f.otf",
-    "static/media/Crusty Demons Club_Hi-Res_ipfsURI.035ff3f8.txt": "/static/media/Crusty Demons Club_Hi-Res_ipfsURI.035ff3f8.txt",
-    "static/media/Crusty Demons Club_summary.ab1d8315.txt": "/static/media/Crusty Demons Club_summary.ab1d8315.txt",
+    "static/media/Crusty Demons Club_Hi-Res_ipfsURI.761d0886.txt": "/static/media/Crusty Demons Club_Hi-Res_ipfsURI.761d0886.txt",
+    "static/media/Crusty Demons Club_summary.7ab4e4b4.txt": "/static/media/Crusty Demons Club_summary.7ab4e4b4.txt",
     "static/media/logo.f49e43d0.png": "/static/media/logo.f49e43d0.png",
     "static/media/mint-a-b.2340e535.png": "/static/media/mint-a-b.2340e535.png",
     "static/media/slick-theme.css": "/static/media/slick.c94f7671.ttf"
@@ -49,8 +49,8 @@
   "entrypoints": [
     "static/js/runtime-main.f35ee1e5.js",
     "static/css/6.e55ae7a3.chunk.css",
-    "static/js/6.fe8041d0.chunk.js",
+    "static/js/6.058edda7.chunk.js",
     "static/css/main.754c8b93.chunk.css",
-    "static/js/main.6d0b18c2.chunk.js"
+    "static/js/main.8387d3f0.chunk.js"
   ]
 }

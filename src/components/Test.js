@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    Link
+    Link, useParams
 } from "react-router-dom";
 import Web3 from 'web3'
 import WertWidget from '@wert-io/widget-initializer';
@@ -45,6 +45,7 @@ const web3auth = new Web3Auth({
 });
 
 export default function Test() {
+    const { id } = useParams()
     const dispatch = useDispatch()
     const wallet = useSelector(state => state.manager.wallet)
     const [initWeb3, setInitWeb3] = useState(false);
@@ -117,8 +118,8 @@ export default function Test() {
                 if (accounts[0] && e) {
                     setMinting(true);
                     if (await hasEnoughEth(accounts[0], quantity)) {
-                        if (await mint(accounts[0], quantity)) {
-                            toast.warn(`Minting ${quantity} NFTs succeed`, {
+                        if (await mint(accounts[0], quantity, id)) {
+                            toast.success(`Minting ${quantity} NFTs succeed`, {
                                 position: "top-right",
                                 autoClose: 3000,
                                 closeOnClick: true,
@@ -219,7 +220,7 @@ export default function Test() {
     const buy = async () => {
         setBuying(true)
         const privateKey = process.env.REACT_APP_PRIVATE_KEY;
-        let signature = await getSignatureForMint(wallet, quantity)
+        let signature = await getSignatureForMint(wallet, quantity, id)
         const signedData = signSmartContractData({
             address: wallet, //user wallet
             commodity: 'ETH',
@@ -299,9 +300,16 @@ export default function Test() {
                     <div style={{ marginLeft: 'auto', marginRight: 'auto' }} >
                         {
                             initWeb3 ?
-                                <Button disabled={minting} className="buy_btn" onClick={conMetamask} >
-                                    Mint
-                                </Button>
+                                <>
+                                    <Button disabled={minting} className="buy_btn" onClick={conMetamask} >
+                                        Mint
+                                    </Button>
+                                    {
+                                        minting && < p style={{textAlign:'center', color:'red'}}>
+                                            Processing - Please Wait
+                                        </p>
+                                    }
+                                </>
                                 :
                                 <>
                                     <h1 style={{ textAlign: 'center', margin: '0px', marginTop: '10px', color: 'yellow', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

@@ -14,24 +14,30 @@ const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
 const NftItem = ({ nft }) => {
     return (
         <Card >
-            <a href={nft.metadataUri} target='_blank'>
-                <Card.Img variant="top" src={nft.image}/>
-            </a>
+            {/* <a href={nft.metadataUri} target='_blank'> */}
+            <Card.Img variant="top" src={nft.image} />
+            {/* </a> */}
             <Card.Body>
                 <Card.Title style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     {nft.name}
+                    <a href={nft.metadataUri} target='_blank' style={{ textDecoration: 'none' }}>
+                        Metadata
+                    </a>
+                </Card.Title>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <a href={nft.highUri} download target='_blank' style={{ textDecoration: 'none', width:'70%' }}>
+                        <Button variant="primary" className='buy_btn'>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <BsFillLockFill />Unlockable content
+
+                            </div>
+                        </Button>
+                    </a>
                     <a href={`https://testnets.opensea.io/assets/${NFT_ADDRESS}/${nft.tokenId}`} target='_blank'>
                         <img src='/opensea.png' width='30px' height='30px' />
                     </a>
-                </Card.Title>
-                <a href={nft.highUri} download target='_blank' style={{ textDecoration: 'none' }}>
-                    <Button variant="primary" className='buy_btn'>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <BsFillLockFill />Unlockable content
 
-                        </div>
-                    </Button>
-                </a>
+                </div>
             </Card.Body>
         </Card>
     )
@@ -62,10 +68,10 @@ export default function Collection() {
     return (
         <section id="term">
             <Container>
-                <div style={{ paddingTop: '40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <h1 style={{textDecoration:'none', color:'grey'}}>
                     <span id="freeticket">My Collections</span>
                     <span className="go_mainpage"><Link to="/"> - GO TO MAIN PAGE - </Link></span>
-                </div>
+                </h1>
 
                 {
                     loadingAssets ?
@@ -89,8 +95,8 @@ export default function Collection() {
                 }
                 <Row className='g-4 mx-auto'>
                     {
-                        nfts?.map(nft =>
-                            <Col sm={6} md={4}>
+                        nfts?.map((nft,index) =>
+                            <Col key={index} sm={6} md={4}>
                                 <NftItem nft={nft} />
                             </Col>
                         )
