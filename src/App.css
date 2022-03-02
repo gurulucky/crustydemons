@@ -1227,3 +1227,7 @@ p {
         display: block;
     }
 }
+
+.section_style {
+    padding-top: 150px;
+}

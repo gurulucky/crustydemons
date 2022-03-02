@@ -12,8 +12,8 @@ import Team9 from '../assets/images/3.png'
 
 export default function Meet() {
 	return(
-		<section id="meet">
-			<Container style={{marginTop:'20px'}}>
+		<section id="meet" style={{paddingTop:'150px'}}>
+			<Container>
 				<Row>
 					<div className="meet_content">
 						<h1>Team</h1>

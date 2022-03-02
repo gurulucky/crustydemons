@@ -5,8 +5,8 @@ export default function Utility() {
 
     
     return(
-        <section id="utility">
-            <Container id="backeffect">
+        <section id="utility" style={{paddingTop:'150px'}}>
+            <Container id="backeffect" >
                 <h1>Crusty Demons Club Utility</h1>
                 <h2 className="caption">A high-resolution, one-of-a-kind NFT image that you can use for personal use as you wish is just the beginning.  </h2>
                 <h2 className="caption">The Crusty Demons NFT also serves as a membership token to the Crusty Demons Club, which offers a world of perks, privileges and exclusive access including:</h2>

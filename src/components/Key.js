@@ -5,7 +5,7 @@ export default function Key() {
 
     
     return(
-        <section id="key">
+        <section id="key" className='section_style'>
             <Container>
                 <h1>Key Information</h1>
                 <Row>

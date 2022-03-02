@@ -18,9 +18,9 @@ const NftItem = ({ nft }) => {
             <Card.Img variant="top" src={nft.image} />
             {/* </a> */}
             <Card.Body>
-                <Card.Title style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Card.Title style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize:'16px' }}>
                     {nft.name}
-                    <a href={nft.metadataUri} target='_blank' style={{ textDecoration: 'none' }}>
+                    <a href={nft.metadataUri} target='_blank' style={{ textDecoration: 'none', fontSize:'12px' }}>
                         Metadata
                     </a>
                 </Card.Title>

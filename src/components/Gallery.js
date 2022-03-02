@@ -4,7 +4,7 @@ import {Container, Row} from 'react-bootstrap'
 
 export default function Gallery() {
     return(
-        <section id="gallery">
+        <section id="gallery" style={{paddingTop:'150px'}}>
             <Container>
                 <h1 className="gallery_title">Gallery</h1>
                 <Row className="readmore">
