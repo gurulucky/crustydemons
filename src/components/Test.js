@@ -22,9 +22,10 @@ import home_nft from '../assets/images/mint-a-b.png'
 import { toast } from 'react-toastify';
 
 import { setWallet } from '../actions/manager';
-import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress } from '../lib/mint';
+import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress, renameNFT, hasEnoughEthForRename, getSignatureForRename } from '../lib/mint';
 
 const PRICE = Number(process.env.REACT_APP_PRICE)
+const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
 const NETWORK = process.env.REACT_APP_NETWORK;
 
 const ethChainConfig = {
@@ -54,6 +55,9 @@ export default function Test() {
     const [web3authReady, setWeb3authReady] = useState(false)
     const [totalMinted, setTotalMinted] = useState(0);
     const [quantity, setQuantity] = useState(1)
+    const [tokenId, setTokenId] = useState(-1)
+    const [name, setName] = useState("")
+    const [renaming, setRenaming] = useState(false)
 
     const [status, setStatus] = useState("");
 
@@ -202,11 +206,22 @@ export default function Test() {
         setTotalMinted(total);
     }
 
-    const changeQuantity = (e) => {
-        if (e.target.value > 10) {
-            return;
+    const changeTokenId = (e) => {
+        if (e.target.value >= 0 && e.target.value <= 10000) {
+            setTokenId(Number(e.target.value))
+        } else {
+            toast.warn('please input correct token ID', {
+                position: "top-right",
+                autoClose: 3000,
+                closeOnClick: true,
+                hideProgressBar: true,
+            });
         }
-        dispatch(setQuantity(e.target.value));
+    }
+
+    const changeName = (e) => {
+        let name = e.target.value.trim();
+        setName(name)
     }
 
     const handleBuy = async () => {
@@ -271,6 +286,100 @@ export default function Test() {
         });
     }
 
+    const rename = async () => {
+        if (tokenId < 0 || tokenId > 9999) {
+            toast.warn(`Please input correct token ID`, {
+                position: "top-right",
+                autoClose: 3000,
+                closeOnClick: true,
+                hideProgressBar: true,
+            });
+            return
+        }
+        if (name.length < 3 || name.length > 20) {
+            toast.warn(`Please input 3~20 characters for name`, {
+                position: "top-right",
+                autoClose: 3000,
+                closeOnClick: true,
+                hideProgressBar: true,
+            });
+
+            return
+        }
+        try {
+            setRenaming(true)
+
+            if (initWeb3 && wallet) {
+                if (await hasEnoughEthForRename(wallet)) {
+                    if (await renameNFT(wallet, tokenId, name)) {
+                        toast.warn(`Your NFT name was changed by "${name}"`, {
+                            position: "top-right",
+                            autoClose: 3000,
+                            closeOnClick: true,
+                            hideProgressBar: true,
+                        });
+                    } else {
+                        toast.warn(`You can't rename now. Please check whether there is NFT with token ID or network connection`, {
+                            position: "top-right",
+                            autoClose: 3000,
+                            closeOnClick: true,
+                            hideProgressBar: true,
+                        });
+                    }
+                } else {
+                    toast.warn(`Your ETH balance is not enough for renaming`, {
+                        position: "top-right",
+                        autoClose: 3000,
+                        closeOnClick: true,
+                        hideProgressBar: true,
+                    });
+                }
+            } else if (web3authReady && wallet) {
+                const privateKey = process.env.REACT_APP_PRIVATE_KEY;
+                let signature = await getSignatureForRename(wallet, tokenId, name)
+                if (signature) {
+                    const signedData = signSmartContractData({
+                        address: wallet, //user wallet
+                        commodity: 'ETH',
+                        commodity_amount: RENAME_PRICE,
+                        pk_id: 'key1',
+                        sc_address: process.env.REACT_APP_NFT_ADDRESS,//ropsten abc contract
+                        sc_id: uuidv4(), // must be unique for any request
+                        sc_input_data: signature,
+                    }, privateKey);
+
+                    const otherWidgetOptions = {
+                        partner_id: process.env.REACT_APP_PARTNER_ID,
+                        container_id: 'widget',
+                        click_id: uuidv4(), // unique id of purhase in your system
+                        origin: 'https://sandbox.wert.io', // this option needed only for this example to work
+                        width: 400,
+                        height: 600,
+                    };
+
+                    const wertWidget = new WertWidget({
+                        ...signedData,
+                        ...otherWidgetOptions,
+                    });
+
+                    window.open(wertWidget.getRedirectUrl())
+                } else {
+                    toast.warn(`You can't rename ABC now. Please try later.`, {
+                        position: "top-right",
+                        autoClose: 3000,
+                        closeOnClick: true,
+                        hideProgressBar: true,
+                    });
+                }
+            }
+
+            setRenaming(false)
+        } catch (err) {
+            console.log(err.message)
+        }
+        setRenaming(false)
+    }
+
     return (
         <section id="mint">
             <div className='my_container'>
@@ -305,12 +414,12 @@ export default function Test() {
                                         Mint
                                     </Button>
                                     {
-                                        minting && < p style={{textAlign:'center', color:'red'}}>
+                                        minting && < p style={{ textAlign: 'center', color: 'red' }}>
                                             Processing - Please Wait
                                         </p>
                                     }
                                 </>
-                                :
+                                : web3authReady &&
                                 <>
                                     <h1 style={{ textAlign: 'center', margin: '0px', marginTop: '10px', color: 'yellow', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         {
@@ -330,6 +439,20 @@ export default function Test() {
                                 </>
                         }
                     </div >
+                    <div className="mint_section_body">
+                        <p> <span className="mint_color" > Rename </span>your Crusty Demons Club NFT</p>
+                        <p> Rename Price: < span className="mint_color" > {`${RENAME_PRICE} Eth + Gas Fee`} </span></p>
+                        <div className="mint_counter">
+                            <input type='number' placeholder='TokenId' className='tokenId_field' onChange={changeTokenId} />
+                            <input type='text' placeholder='New name(3~20 characters)' className='name_field' onChange={changeName} />
+                        </div>
+                        {
+                            ((initWeb3 && wallet) || (web3authReady && wallet)) &&
+                            <Button disabled={renaming} className="buy_btn" onClick={rename} >
+                                Rename
+                            </Button>
+                        }
+                    </div>
                     {
                         wallet &&
                         <Link to='/collection' className='mint_section_body' style={{ textDecoration: 'none' }}>

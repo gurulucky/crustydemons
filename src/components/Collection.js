@@ -18,14 +18,15 @@ const NftItem = ({ nft }) => {
             <Card.Img variant="top" src={nft.image} />
             {/* </a> */}
             <Card.Body>
-                <Card.Title style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize:'16px' }}>
+                <Card.Title style={{ display: 'flex', color:'black', justifyContent: 'space-between', alignItems: 'center', fontSize: '16px' }}>
                     {nft.name}
-                    <a href={nft.metadataUri} target='_blank' style={{ textDecoration: 'none', fontSize:'12px' }}>
+                    <a href={nft.metadataUri} target='_blank' style={{ textDecoration: 'none', fontSize: '12px' }}>
                         Metadata
                     </a>
                 </Card.Title>
+                <span style={{ fontSize: '8px', color:'black' }}>{`Rarity Score:${nft.rarityScore}`}</span>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <a href={nft.highUri} download target='_blank' style={{ textDecoration: 'none', width:'70%' }}>
+                    <a href={nft.highUri} download target='_blank' style={{ textDecoration: 'none', width: '70%' }}>
                         <Button variant="primary" className='buy_btn'>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <BsFillLockFill />Unlockable content
@@ -68,7 +69,7 @@ export default function Collection() {
     return (
         <section id="term">
             <Container>
-                <h1 style={{textDecoration:'none', color:'grey'}}>
+                <h1 style={{ textDecoration: 'none', color: 'grey' }}>
                     <span id="freeticket">My Collections</span>
                     <span className="go_mainpage"><Link to="/"> - GO TO MAIN PAGE - </Link></span>
                 </h1>
@@ -95,7 +96,7 @@ export default function Collection() {
                 }
                 <Row className='g-4 mx-auto'>
                     {
-                        nfts?.map((nft,index) =>
+                        nfts?.map((nft, index) =>
                             <Col key={index} sm={6} md={4}>
                                 <NftItem nft={nft} />
                             </Col>

@@ -3,6 +3,9 @@ import { NFT_ABI } from './abi.js'
 // import { METADATA_URIS } from './ABC2-M_summary.js'
 import Metadata_input from './Crusty Demons Club_summary.txt'
 import High_res_input from './Crusty Demons Club_Hi-Res_ipfsURI.txt'
+import Rarity_input from './Crusty Demons Club_Rarity_Summary.txt'
+import { pinJSONToIPFS } from './pinata.js'
+import axios from 'axios'
 
 const rinkebynet = 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 const ropstennet = 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
@@ -10,30 +13,34 @@ const mainnet = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 
 const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
 const PRICE = process.env.REACT_APP_PRICE
+const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
 
 var HIGH_RES_URIS = []
 var METADATA_URIS = []
+var RARITY_SCORES = []
+
+fetch(Rarity_input)
+    .then((r) => r.text())
+    .then(text => {
+        RARITY_SCORES = text.split("\n").map(item => {
+            let rarity = item.replace('\r', '')
+            rarity = rarity.split('_')
+            return rarity[rarity.length - 1]
+        })
+        // console.log(HIGH_RES_URIS)
+    })
 
 fetch(High_res_input)
     .then((r) => r.text())
     .then(text => {
-        if (text.split("\n").length > 0) {
-            HIGH_RES_URIS = text.split("\n")
-        } else {
-            HIGH_RES_URIS = text.split("\r\n");
-        }
+        HIGH_RES_URIS = text.split("\n").map(item => item.replace('\r', ''))
         // console.log(HIGH_RES_URIS)
     })
 
 fetch(Metadata_input)
     .then((r) => r.text())
     .then(text => {
-        var lines
-        if (text.split("\n").length > 0) {
-            lines = text.split("\n")
-        } else {
-            lines = text.split("\r\n");
-        }
+        var lines = text.split("\n").map(item => item.replace('\r', ''))
         for (var line = 1; line < lines.length; line++) {
             if (lines[line]) {
                 const infuraUrlset = lines[line].split("	");
@@ -45,7 +52,7 @@ fetch(Metadata_input)
     })
 
 export const mint = async (account, amount, id) => {
-    try{
+    try {
 
         let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
         let tokenCounter = await getTotalMinted()
@@ -55,7 +62,7 @@ export const mint = async (account, amount, id) => {
         console.log('groupId', groupId)
         let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
         return res.status
-    }catch(err){
+    } catch (err) {
         console.log(err.message)
     }
 }
@@ -90,11 +97,36 @@ export const getHighUris = (tokenIds) => {
     return highURIs
 }
 
+export const getRarityScores = (tokenIds) => {
+    let rarityScores = []
+    for (let i = 0; i < tokenIds.length; i++) {
+        rarityScores.push(RARITY_SCORES[tokenIds[i]])
+    }
+    console.log(rarityScores)
+    return rarityScores
+}
+
 export const hasEnoughEth = async (account, amount) => {
     try {
         let balance = await window.web3.eth.getBalance(account);
         // console.log(balance, window.web3.utils.toWei((PRICE * amount).toString, "ether"));
         if (isBigger(String(balance), String(window.web3.utils.toWei((PRICE * amount).toString(), "ether"))) >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (err) {
+        console.log(err.message);
+        return false;
+    }
+}
+
+export const hasEnoughEthForRename = async (account) => {
+    try {
+        let balance = await window.web3.eth.getBalance(account);
+        // console.log(balance, window.web3.utils.toWei((PRICE * amount).toString, "ether"));
+        console.log(balance, RENAME_PRICE)
+        if (isBigger(String(balance), String(window.web3.utils.toWei(RENAME_PRICE, "ether"))) >= 0) {
             return true;
         } else {
             return false;
@@ -129,7 +161,7 @@ export const shortAddress = (address) => {
 
 export const getSignatureForMint = async (account, amount, id) => {
     if (!account || amount <= 0) {
-        return
+        return ""
     }
     const web3 = new Web3(mainnet)
     let tokenCounter = await getTotalMinted()
@@ -161,6 +193,7 @@ export const getSignatureForMint = async (account, amount, id) => {
         },
         [account, mintUris, groupId]
     )
+    console.log(`mint signature ${signature}`)
     return signature
 }
 
@@ -171,3 +204,88 @@ export const getTokenIdsOf = async (account) => {
 
     return tokenIds.map(item => Number(item))
 }
+
+export const getNewMetadataURI = async (tokenId, name) => {
+    let metadata, metadataURI, tokenURI
+    let web3 = new Web3(ropstennet)
+    let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+    try {
+        tokenURI = await abc_contract.methods.tokenURI(tokenId).call()
+    } catch (err) {
+        console.log(err.message)
+        return ""
+    }
+
+    await axios.get(tokenURI)
+        .then(res => {
+            metadata = res.data;
+        })
+        .catch(err => {
+            return ""
+        })
+
+    metadata.name = name;
+
+    let uploadToIPFS = await pinJSONToIPFS(metadata);
+    if (uploadToIPFS.success) {
+        metadataURI = 'https://gateway.pinata.cloud/ipfs/' + uploadToIPFS.pinataUrl
+        console.log(`rename metadata ${metadataURI}`)
+        return metadataURI
+    } else {
+        return ""
+    }
+}
+
+export const renameNFT = async (account, tokenId, name) => {
+    try {
+        let metadataURI = await getNewMetadataURI(tokenId, name)
+        if (metadataURI) {
+            let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+            let res = await abc_contract.methods.setTokenUri(account, tokenId, metadataURI).send({ from: account, value: window.web3.utils.toWei(RENAME_PRICE.toString(), "ether") })
+            return res.status
+        } else {
+            return false
+        }
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+export const getSignatureForRename = async (account, tokenId, name) => {
+    let metadataURI = await getNewMetadataURI(tokenId, name)
+    if (metadataURI) {
+        const web3 = new Web3(mainnet)
+        let signature = web3.eth.abi.encodeFunctionCall(
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "tokenOwner",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "tokenId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "tokenUri",
+                        "type": "string"
+                    }
+                ],
+                "name": "setTokenUri",
+                "outputs": [],
+                "stateMutability": "payable",
+                "type": "function"
+            },
+            [account, tokenId, metadataURI]
+        )
+        console.log(`rename signature ${signature}`)
+        return signature
+    }
+    else{
+        return ""
+    }
+}
+
