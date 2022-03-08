@@ -210,6 +210,10 @@ body {
     color: #d3d3d3;
 }
 
+.rename_section_body {
+    background-color: #1c0e0e;
+}
+
 .mint_section_body .row {
     margin: 0 !important;
 }

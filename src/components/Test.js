@@ -439,20 +439,6 @@ export default function Test() {
                                 </>
                         }
                     </div >
-                    <div className="mint_section_body">
-                        <p> <span className="mint_color" > Rename </span>your Crusty Demons Club NFT</p>
-                        <p> Rename Price: < span className="mint_color" > {`${RENAME_PRICE} Eth + Gas Fee`} </span></p>
-                        <div className="mint_counter">
-                            <input type='number' placeholder='TokenId' className='tokenId_field' onChange={changeTokenId} />
-                            <input type='text' placeholder='New name(3~20 characters)' className='name_field' onChange={changeName} />
-                        </div>
-                        {
-                            ((initWeb3 && wallet) || (web3authReady && wallet)) &&
-                            <Button disabled={renaming} className="buy_btn" onClick={rename} >
-                                Rename
-                            </Button>
-                        }
-                    </div>
                     {
                         wallet &&
                         <Link to='/collection' className='mint_section_body' style={{ textDecoration: 'none' }}>
@@ -463,7 +449,26 @@ export default function Test() {
                     }
                     <a href="https://ropsten.etherscan.io/address/0x53254267052c7797f1275C9E53bD22accd8a1c48" className="view_contract" target="_blank"><p>View Contract</p>  </a>
 
+
+
+
                 </div >
+                <div className='mint_section rename_section_body'>
+                    <div className="mint_section_body">
+                        <p> <span className="mint_color" > Rename </span>your Crusty Demons Club NFT</p>
+                        <p> Rename Price: < span className="mint_color" > {`${RENAME_PRICE} Eth + Gas Fee`} </span></p>
+                        <div className="mint_counter">
+                            <input type='number' placeholder='TokenId' className='tokenId_field' onChange={changeTokenId} />
+                            <input type='text' placeholder='New Name (3-20 Characters)' className='name_field' onChange={changeName} />
+                        </div>
+                        {
+                            ((initWeb3 && wallet) || (web3authReady && wallet)) &&
+                            <Button disabled={renaming} className="buy_btn" onClick={rename} >
+                                Rename
+                            </Button>
+                        }
+                    </div>
+                </div>
             </div>
         </section >
     )
