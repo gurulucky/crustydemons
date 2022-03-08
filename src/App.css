@@ -175,7 +175,7 @@ body {
 }
 
 .mint_section {
-    width: 40%;
+    width: 45%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2.5vw;
@@ -210,9 +210,19 @@ body {
     color: #d3d3d3;
 }
 
-.rename_section_body {
-    background-color: #1c0e0e;
+.grey_color {
+    color: rgb(76 72 71);
 }
+
+.rename_section_body {
+    /* background-color: #404040; */
+    background-color: #e5e5f7;
+opacity: 0.8;
+background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 10px ), repeating-linear-gradient( #444cf755, #fefeff );
+    margin-top: 1vw;
+}
+
+
 
 .mint_section_body .row {
     margin: 0 !important;
@@ -253,13 +263,24 @@ body {
     color: #A69490 !important;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .tokenId_field {
     width: 6rem;
-    height: 4rem;
+    height: 3rem;
     margin-left: 2.5%;
     margin-right: 2.5%;
     padding: 0 !important;
-    font-size: 1.4rem !important;
+    font-size: 1.2rem !important;
     font-family: 'Roboto', sans-serif;
     border: 1px solid #A69490 !important;
     background: none !important;
@@ -269,11 +290,11 @@ body {
 
 .name_field {
     width: 25rem;
-    height: 4rem;
+    height: 3rem;
     margin-left: 2.5%;
     margin-right: 2.5%;
     padding: 0 !important;
-    font-size: 1.4rem !important;
+    font-size: 1.2rem !important;
     font-family: 'Roboto', sans-serif;
     border: 1px solid #A69490 !important;
     background: none !important;

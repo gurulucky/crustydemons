@@ -19,14 +19,16 @@ const NftItem = ({ nft }) => {
             {/* </a> */}
             <Card.Body>
                 <Card.Title style={{ display: 'flex', color: 'black', justifyContent: 'space-between', alignItems: 'center', fontSize: '16px' }}>
-                    {nft.name}
+                    <div>
+                        <span style={{ fontSize: '12px', color: 'black' }}>Token Name: </span> {nft.name}
+                    </div>
                     <a href={nft.metadataUri} target='_blank' style={{ textDecoration: 'none', fontSize: '12px' }}>
                         Metadata
                     </a>
                 </Card.Title>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ fontSize: '8px', color: 'black' }}>{`Rarity Score:${nft.rarityScore}`}</span>
-                    <span style={{ fontSize: '16px', color: 'black' }}>{`Token ID:${nft.tokenId}`}</span>
+                    <span style={{ fontSize: '12px', color: 'black' }}>{`Rarity Score:${nft.rarityScore}`}</span>
+                    <span style={{ fontSize: '12px', color: 'black' }}>{`Token ID:${nft.tokenId}`}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <a href={nft.highUri} download target='_blank' style={{ textDecoration: 'none', width: '70%' }}>
