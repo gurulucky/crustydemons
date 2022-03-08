@@ -123,7 +123,7 @@ export default function Test() {
                     setMinting(true);
                     if (await hasEnoughEth(accounts[0], quantity)) {
                         if (await mint(accounts[0], quantity, id)) {
-                            toast.success(`Minting ${quantity} NFTs succeed`, {
+                            toast.success(`${quantity} NFT Minted Successfully.`, {
                                 position: "top-right",
                                 autoClose: 3000,
                                 closeOnClick: true,
@@ -443,7 +443,7 @@ export default function Test() {
                         wallet &&
                         <Link to='/collection' className='mint_section_body' style={{ textDecoration: 'none' }}>
                             < p className="mint_color">
-                                My Collections
+                                My Collection
                             </p>
                         </Link >
                     }

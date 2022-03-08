@@ -75,7 +75,7 @@ export default function Collection() {
         <section id="term">
             <Container>
                 <h1 style={{ textDecoration: 'none', color: 'grey' }}>
-                    <span id="freeticket">My Collections</span>
+                    <span id="freeticket">My Collection</span>
                     <span className="go_mainpage"><Link to="/"> - GO TO MAIN PAGE - </Link></span>
                 </h1>
 
