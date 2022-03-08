@@ -312,7 +312,7 @@ export default function Test() {
             if (initWeb3 && wallet) {
                 if (await hasEnoughEthForRename(wallet)) {
                     if (await renameNFT(wallet, tokenId, name)) {
-                        toast.warn(`Your NFT name was changed by "${name}"`, {
+                        toast.warn(`Your NFT name was changed to "${name}"`, {
                             position: "top-right",
                             autoClose: 3000,
                             closeOnClick: true,
@@ -381,7 +381,7 @@ export default function Test() {
     }
 
     return (
-        <section id="mint" style={{paddingTop:'3vw'}}>
+        <section id="mint" style={{ paddingTop: '3vw' }}>
             <div className='my_container'>
                 <h1 className="freeticket">Crusty Demons Club NFT holders are entitled to <br /> LIFETIME <span id="freeticket">FREE TICKETS</span> TO CRUSTY DEMONS EVENTS
                     <span className="go_mainpage"><Link to="/"> - GO TO MAIN PAGE - </Link></span>
@@ -453,7 +453,7 @@ export default function Test() {
                     <div className="mint_section_body">
                         {/* <p> <span className="mint_color" >Rename </span>your Crusty Demons Club NFT</p> */}
                         <div className='rename_field'>
-                            <p>< span className="mint_color" >Rename your&nbsp;</span></p>                            
+                            <p>< span className="mint_color" >Rename your&nbsp;</span></p>
                             <p>Crusty Demons Club NFT</p>
                         </div>
                         <div className='rename_field'>
@@ -469,6 +469,11 @@ export default function Test() {
                             <Button disabled={renaming} className="buy_btn" onClick={rename} >
                                 Rename
                             </Button>
+                        }
+                        {
+                            renaming && < p style={{ textAlign: 'center', color: 'red' }}>
+                                Processing - Please Wait
+                            </p>
                         }
                     </div>
                 </div>
