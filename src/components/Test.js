@@ -381,7 +381,7 @@ export default function Test() {
     }
 
     return (
-        <section id="mint">
+        <section id="mint" style={{paddingTop:'3vw'}}>
             <div className='my_container'>
                 <h1 className="freeticket">Crusty Demons Club NFT holders are entitled to <br /> LIFETIME <span id="freeticket">FREE TICKETS</span> TO CRUSTY DEMONS EVENTS
                     <span className="go_mainpage"><Link to="/"> - GO TO MAIN PAGE - </Link></span>

@@ -18,6 +18,10 @@ body {
     padding-top: 8vw;
 }
 
+#test_mint {
+    padding-top: 3vw;
+}
+
 .navbar {
     padding-top: 0 !important;
 }
