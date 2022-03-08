@@ -451,10 +451,17 @@ export default function Test() {
                 </div >
                 <div className='mint_section rename_section_body'>
                     <div className="mint_section_body">
-                        <p> <span className="mint_color" >Rename </span><span className='grey_color'>your Crusty Demons Club NFT</span></p>
-                        <p><span className='grey_color'> Rename Price: </span>< span className="mint_color" > {`${RENAME_PRICE} Eth + Gas Fee`} </span></p>
-                        <div className="mint_counter">
-                            <input type='number' placeholder='Token Id' className='tokenId_field' onChange={changeTokenId} />
+                        {/* <p> <span className="mint_color" >Rename </span>your Crusty Demons Club NFT</p> */}
+                        <div className='rename_field'>
+                            <p>< span className="mint_color" >Rename your&nbsp;</span></p>                            
+                            <p>Crusty Demons Club NFT</p>
+                        </div>
+                        <div className='rename_field'>
+                            <p>Rename Price:&nbsp;</p>
+                            <p>< span className="mint_color" > {`${RENAME_PRICE} Eth + Gas Fee`} </span></p>
+                        </div>
+                        <div className="rename_field">
+                            <input type='number' placeholder='Token ID' className='tokenId_field' onChange={changeTokenId} />
                             <input type='text' placeholder='New Name (3-20 Characters)' className='name_field' onChange={changeName} />
                         </div>
                         {
