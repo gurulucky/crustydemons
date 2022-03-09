@@ -79,7 +79,7 @@ const Subscribe = () => {
                                 </p>
                             </div>
                         </Col>
-                        <Col lg="6" md="12" sm="12" style={{marginTop: '1vw', marginBottom: '1vw'}}>
+                        {/* <Col lg="6" md="12" sm="12" style={{marginTop: '1vw', marginBottom: '1vw'}}>
                             <InputGroup>
                                 <BiEnvelope className="email_icon"/>
                                 <Form.Control
@@ -97,7 +97,7 @@ const Subscribe = () => {
                             <Button className="subscribe_btn" type='submit'>
                             Join Crusty Demons Club
                             </Button>{' '}
-                        </Col>
+                        </Col> */}
                     </Row>
                     {emailvalid === false ? <p style={{color: 'Yellow', textAlign: 'center'}}>Please enter a valid email address</p> : null}
                 </Form>
