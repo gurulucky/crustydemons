@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     Link, useParams
@@ -22,7 +23,7 @@ import home_nft from '../assets/images/mint-a-b.png'
 import { toast } from 'react-toastify';
 
 import { setWallet } from '../actions/manager';
-import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress, renameNFT, hasEnoughEthForRename, getSignatureForRename } from '../lib/mint';
+import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress, renameNFT, hasEnoughEthForRename, getSignatureForRename, getGroupId } from '../lib/mint';
 
 const PRICE = Number(process.env.REACT_APP_PRICE)
 const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
@@ -47,6 +48,7 @@ const web3auth = new Web3Auth({
 
 export default function Test() {
     const { id } = useParams()
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const wallet = useSelector(state => state.manager.wallet)
     const [initWeb3, setInitWeb3] = useState(false);
@@ -62,6 +64,9 @@ export default function Test() {
     const [status, setStatus] = useState("");
 
     useEffect(() => {
+        if (getGroupId(id) === -1) {
+            navigate('/vip', { replace: true })
+        }
         if (window.ethereum && !initWeb3) {
             setInitWeb3(true);
             window.web3 = new Web3(window.ethereum);
@@ -119,27 +124,29 @@ export default function Test() {
                 console.log(accounts);
                 dispatch(setWallet(accounts[0]))
                 // console.log(await window.web3.eth.getBalance(accounts[0]));
-                if (accounts[0] && e) {
-                    setMinting(true);
-                    if (await hasEnoughEth(accounts[0], quantity)) {
-                        if (await mint(accounts[0], quantity, id)) {
-                            toast.success(`${quantity} NFT Minted Successfully.`, {
+                if (getGroupId(id) >= 0) {
+                    if (accounts[0] && e) {
+                        setMinting(true);
+                        if (await hasEnoughEth(accounts[0], quantity)) {
+                            if (await mint(accounts[0], quantity, getGroupId(id))) {
+                                toast.success(`${quantity} NFT Minted Successfully.`, {
+                                    position: "top-right",
+                                    autoClose: 3000,
+                                    closeOnClick: true,
+                                    hideProgressBar: true,
+                                });
+                                setTotal();
+                            }
+                        } else {
+                            toast.warn(`Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`, {
                                 position: "top-right",
                                 autoClose: 3000,
                                 closeOnClick: true,
                                 hideProgressBar: true,
                             });
-                            setTotal();
                         }
-                    } else {
-                        toast.warn(`Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`, {
-                            position: "top-right",
-                            autoClose: 3000,
-                            closeOnClick: true,
-                            hideProgressBar: true,
-                        });
+                        setMinting(false);
                     }
-                    setMinting(false);
                 }
             } catch (err) {
                 setMinting(false);
