@@ -176,14 +176,14 @@ export const shortAddress = (address) => {
     return address;
 }
 
-export const getSignatureForMint = async (account, amount, id) => {
+export const getSignatureForMint = async (account, amount, groupId) => {
     if (!account || amount <= 0) {
         return ""
     }
     const web3 = new Web3(mainnet)
     let tokenCounter = await getTotalMinted()
     let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
-    let groupId = id ? Number(id) : 0
+    console.log('groupId', groupId)
     let signature = web3.eth.abi.encodeFunctionCall(
         {
             "inputs": [

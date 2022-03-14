@@ -241,32 +241,35 @@ export default function Test() {
     const buy = async () => {
         setBuying(true)
         const privateKey = process.env.REACT_APP_PRIVATE_KEY;
-        let signature = await getSignatureForMint(wallet, quantity, id)
-        const signedData = signSmartContractData({
-            address: wallet, //user wallet
-            commodity: 'ETH',
-            commodity_amount: (PRICE * quantity).toString(),
-            pk_id: 'key1',
-            sc_address: process.env.REACT_APP_NFT_ADDRESS,//ropsten abc contract
-            sc_id: uuidv4(), // must be unique for any request
-            sc_input_data: signature,
-        }, privateKey);
-
-        const otherWidgetOptions = {
-            partner_id: process.env.REACT_APP_PARTNER_ID,
-            container_id: 'widget',
-            click_id: uuidv4(), // unique id of purhase in your system
-            origin: 'https://sandbox.wert.io', // this option needed only for this example to work
-            width: 400,
-            height: 600,
-        };
-
-        const wertWidget = new WertWidget({
-            ...signedData,
-            ...otherWidgetOptions,
-        });
-
-        window.open(wertWidget.getRedirectUrl())
+        let groupId = getGroupId(id)
+        if(groupId >= 0){
+            let signature = await getSignatureForMint(wallet, quantity, groupId)
+            const signedData = signSmartContractData({
+                address: wallet, //user wallet
+                commodity: 'ETH',
+                commodity_amount: (PRICE * quantity).toString(),
+                pk_id: 'key1',
+                sc_address: process.env.REACT_APP_NFT_ADDRESS,//ropsten abc contract
+                sc_id: uuidv4(), // must be unique for any request
+                sc_input_data: signature,
+            }, privateKey);
+    
+            const otherWidgetOptions = {
+                partner_id: process.env.REACT_APP_PARTNER_ID,
+                container_id: 'widget',
+                click_id: uuidv4(), // unique id of purhase in your system
+                origin: 'https://sandbox.wert.io', // this option needed only for this example to work
+                width: 400,
+                height: 600,
+            };
+    
+            const wertWidget = new WertWidget({
+                ...signedData,
+                ...otherWidgetOptions,
+            });
+    
+            window.open(wertWidget.getRedirectUrl())
+        }
         setBuying(false)
     }
 
