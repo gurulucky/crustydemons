@@ -1,9 +1,8 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    Link, useParams
+    Link, useParams, useNavigate
 } from "react-router-dom";
 import Web3 from 'web3'
 import WertWidget from '@wert-io/widget-initializer';
