@@ -7,13 +7,13 @@ export default function Utility() {
     return(
         <section id="utility" style={{paddingTop:'150px'}}>
             <Container id="backeffect" >
-                <h1>Crusty Demons Club Utility</h1>
+                <h1>Demons Club Utility</h1>
                 <h2 className="caption">A high-resolution, one-of-a-kind NFT image that you can use for personal use as you wish is just the beginning.  </h2>
-                <h2 className="caption">The Crusty Demons NFT also serves as a membership token to the Crusty Demons Club, which offers a world of perks, privileges and exclusive access including:</h2>
+                <h2 className="caption">The Demons NFT also serves as a membership token to the Demons Club, which offers a world of perks, privileges and exclusive access including:</h2>
                 <Row>
                     <Col lg="6" md="12" sm="12">
                         <p>
-                            <span className="No">1.</span>Being part of a like-minded VIP community, the Crusty Demons Club
+                            <span className="No">1.</span>Being part of a like-minded VIP community, the Demons Club
                         </p>
                         <p>
                             <span className="No">2.</span> Exclusive and LIFETIME FREE tickets to all major Crusty Demons live shows/events
@@ -25,7 +25,7 @@ export default function Utility() {
                             <span className="No">4.</span>	Special events where you can chat with athletes in real time via special video calls, social media platforms and IRL gatherings
                         </p>
                         <p>
-                            <span className="No">5.</span>	Access to Crusty Demons Club only merchandise
+                            <span className="No">5.</span>	Access to Demons Club only merchandise
                         </p>
                         <p>
                             <span className="No">6.</span>	Opportunity to request personalization of certain merchandise
@@ -51,7 +51,7 @@ export default function Utility() {
                         <span className="No">12.</span>	Priority access to further NFT drops including, as part of the community, make suggestions and provide ideas for new NFT drops
                         </p>
                         <p>
-                        <span className="No">13.</span>	Early access to planned Crusty Demons games
+                        <span className="No">13.</span>	Early access to planned Demons Club games
                         </p>
                         <p>
                         <span className="No">14.</span>	Early access to planned Crusty Demons video releases
@@ -63,7 +63,7 @@ export default function Utility() {
                 </Row>
                 
                 <h2 className="caption">
-                    Enjoy the guaranteed utility of the Crusty Demons Club and HODL!
+                    Enjoy the guaranteed utility of the Demons Club and HODL!
                 </h2>
             </Container>
         </section>

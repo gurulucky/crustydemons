@@ -392,17 +392,17 @@ export default function Test() {
     return (
         <section id="mint" style={{ paddingTop: '3vw' }}>
             <div className='my_container'>
-                <h1 className="freeticket">Crusty Demons Club NFT holders are entitled to <br /> LIFETIME <span id="freeticket">FREE TICKETS</span> TO CRUSTY DEMONS EVENTS
+                <h1 className="freeticket">Demons Club NFT holders are entitled to <br /> LIFETIME <span id="freeticket">FREE TICKETS</span> TO CRUSTY DEMONS EVENTS
                     <span className="go_mainpage"><Link to="/"> - GO TO MAIN PAGE - </Link></span>
                 </h1>
                 <div className="home_nft">
                     <Image src={home_nft} className="home_nft_pic" />
                 </div>
-                <h1>Limited 10,000 unique collection of utility packed Crusty Demons Club NFTs.</h1>
+                <h1>Limited 10,000 unique collection of utility packed Demons Club NFTs.</h1>
                 <div className="mint_section">
                     <div className="mint_section_body">
                         <p> Total Minted: < span className="mint_color" > {`${totalMinted} / 10000`} </span></p>
-                        <p> <span className="mint_color" > Mint </span> Crusty Demons Club NFT</p>
+                        <p> <span className="mint_color" > Mint </span> Demons Club NFT</p>
                         <p> Price: < span className="mint_color" > {`${PRICE} Eth + Gas Fee`} </span></p>
                         <div className="mint_counter">
                             <div className="counter_form" >
@@ -460,10 +460,10 @@ export default function Test() {
                 </div >
                 <div className='mint_section rename_section_body'>
                     <div className="mint_section_body">
-                        {/* <p> <span className="mint_color" >Rename </span>your Crusty Demons Club NFT</p> */}
+                        {/* <p> <span className="mint_color" >Rename </span>your Demons Club NFT</p> */}
                         <div className='rename_field'>
                             <p>< span className="mint_color" >Rename your&nbsp;</span></p>
-                            <p>Crusty Demons Club NFT</p>
+                            <p>Demons Club NFT</p>
                         </div>
                         <div className='rename_field'>
                             <p>Rename Price:&nbsp;</p>

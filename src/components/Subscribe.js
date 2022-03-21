@@ -27,7 +27,7 @@ const Subscribe = () => {
         e.preventDefault();
         let templateParams = {
             to_email: email,
-            from_name: "Crusty Demons Club",
+            from_name: "Demons Club",
         }
         const isValid = isValidEmail(email);
         if(isValid){
@@ -69,7 +69,7 @@ const Subscribe = () => {
                     <Row className="form_content">
                         <Col lg="3" md="12" sm="12" className='community'>
                             <div>
-                                <h1>Join Crusty Demons Club</h1>
+                                <h1>Join Demons Club</h1>
                                 <p className="icon">
                                     <Nav.Link href="http://www.facebook.com/crustydemons" target="_blank"><FaFacebookF /></Nav.Link>
                                     <Nav.Link href="http://www.instagram.com/crustysofficial" target="_blank"><FaInstagram/></Nav.Link> 
@@ -95,7 +95,7 @@ const Subscribe = () => {
                         </Col>
                         <Col lg="3" md="12" sm="12" style={{marginTop: '1vw', marginBottom: '1vw'}}>
                             <Button className="subscribe_btn" type='submit'>
-                            Join Crusty Demons Club
+                            Join Demons Club
                             </Button>{' '}
                         </Col> */}
                     </Row>

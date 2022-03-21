@@ -34,7 +34,7 @@ export default function Key() {
                         File hosting <span> IPFS</span>
                     </p>
                     <p>
-                        Royalties <span> 10% to fund Crusty Demons ongoing and new projects </span>
+                        Royalties <span> 10% to fund Demons Club ongoing and new projects </span>
                     </p>
                     <p>
                         Number of traits <span> 22</span>
@@ -47,7 +47,7 @@ export default function Key() {
                         Reveal type <span> Instant</span>
                     </p>
                     <p>
-                        Smart Contract <span> crustydemons.club  </span>
+                        Smart Contract <span> DemonsClub.io  </span>
                     </p>
                 </Row>
             </Container>

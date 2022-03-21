@@ -126,7 +126,7 @@ export default function Home() {
 							setTotal();
 						}
 					} else {
-						toast.warn(`Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`, {
+						toast.warn(`Insufficient funds. Check your wallet balance. You need 0.08 ETH + GAS fee at ${accounts[0]}`, {
 							position: "top-right",
 							autoClose: 3000,
 							closeOnClick: true,
@@ -262,15 +262,15 @@ export default function Home() {
 	return (
 		<section id="mint">
 			<div className='my_container'>
-				<h1 className="freeticket">Crusty Demons Club NFT holders are entitled to <br /> LIFETIME <span id="freeticket">FREE TICKETS</span> TO CRUSTY DEMONS EVENTS</h1>
+				<h1 className="freeticket">Demons Club NFT holders are entitled to <br /> LIFETIME <span id="freeticket">FREE TICKETS</span> TO ALL CRUSTY DEMONS EVENTS</h1>
 				<div className="home_nft">
 					<Image src={home_nft} className="home_nft_pic" />
 				</div>
-				<h1>Limited 10,000 unique collection of utility packed Crusty Demons Club NFTs.</h1>
+				<h1>Limited 10,000 unique collection of utility packed Demons Club NFTs.</h1>
 				<div className="mint_section">
 					{/* <div className="mint_section_body">
 						<p> Total Minted: < span className="mint_color" > {`${totalMinted} / 10000`} </span></p>
-						<p> <span className="mint_color" > Mint </span> Crusty Demons Club NFT</p>
+						<p> <span className="mint_color" > Mint </span> Demons Club NFT</p>
 						<p> Price: < span className="mint_color" > {`${PRICE} Eth + Gas Fee`} </span></p>
 						<div className="mint_counter">
 							<div className="counter_form" >

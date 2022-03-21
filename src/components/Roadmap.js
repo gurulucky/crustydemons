@@ -22,7 +22,7 @@ export default function Roadmap(){
                                 <div>
                                     <h1>The Launch </h1>
                                     <br />
-                                    <p>Crusty Demons Club NFTs will be available for minting.</p>
+                                    <p>Demons Club NFTs will be available for minting.</p>
                                 </div>
                             </div>
                             <div className="roadmap_img">
@@ -39,11 +39,11 @@ export default function Roadmap(){
                             </div>
                             <div className="roadmap_text">
                                 <div>
-                                    <h1>25% Crusty Demons Club Airdrop</h1>
+                                    <h1>25% Demons Club Airdrop</h1>
                                     <br />
                                     <p>Exclusive for the first few NFT holders (randomly selected), Chief Demon will airdrop 50 free NFTs.</p>
                                     <br />
-                                    <p>Crusty Demons Club utility commences.  Start enjoying the privileges.</p>
+                                    <p>Demons Club utility commences.  Start enjoying the privileges.</p>
                                 </div>
                             </div>
                         </div>
@@ -56,9 +56,9 @@ export default function Roadmap(){
                                 <div>
                                     <h1>50% More Giveaways & Utility</h1>
                                     <br />
-                                    <p>A further 50 Crusty Demons Club NFTs will be given away to existing NFT holders selected on a ramdon basis.</p>
+                                    <p>A further 50 Demons Club NFTs will be given away to existing NFT holders selected on a ramdon basis.</p>
                                     <br />
-                                    <p>Crusty Demons Club game research will commence and development of initial specifications.</p>
+                                    <p>Demons Club game research will commence and development of initial specifications.</p>
                                     <br />
                                     <p>Pursue further utility expansion opportunities including partnership.</p>
                                 </div>
@@ -79,7 +79,7 @@ export default function Roadmap(){
                                 <div>
                                     <h1>75% Further Airdrop & Merch Dev</h1>
                                     <br />
-                                    <p>A further 100 Crusty Demons Club NFTs will be given away to existing NFT holders selected on a ramdon basis.</p>
+                                    <p>A further 100 Demons Club NFTs will be given away to existing NFT holders selected on a ramdon basis.</p>
                                     <br />
                                     <p>Commence development of merchandise store and collection.</p>
                                 </div>
@@ -96,11 +96,11 @@ export default function Roadmap(){
                                     <br />
                                     <p>This is the new beginning.  </p>
                                     <br />
-                                    <p>In another act of generosity, Chief Demon will give away a further 50 Crusty Demons Club NFTs to existing collectors selected on a random basis as a big thank you from the Crusty Demons Club. </p>
+                                    <p>In another act of generosity, Chief Demon will give away a further 50 Demons Club NFTs to existing collectors selected on a random basis as a big thank you from the Demons Club. </p>
                                     <br />
-                                    <p>Commence development of Crusty Demons Club FMX game.</p>
+                                    <p>Commence development of Demons Club FMX game.</p>
                                     <br />
-                                    <p>Crusty Demons Club NFT holders enjoy the privileges.</p>
+                                    <p>Demons Club NFT holders enjoy the privileges.</p>
                                 </div>
                             </div>
                             <div className="roadmap_img">

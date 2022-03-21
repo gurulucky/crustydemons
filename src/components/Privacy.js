@@ -16,10 +16,10 @@ export default function Privacy() {
 					Club Virtual Pty Ltd (ACN 653 514 231) ("we", "us", “Company", or “CV”) is committed to privacy protection.  
                 </p>
                 <p>
-					CV is the creator and owner of the Crusty Demons NFT concept, design and all associated intellectual property (“IP”) including the domain name crustydemons.club.  Crusty Demons is the owner of the Crusty Demons logo and all associated IP.
+					CV is the creator and owner of the Demons Club NFT concept, design and all associated intellectual property (“IP”) including the domain name crustydemons.club.  Demons Club is the owner of the Demons Club logo and all associated IP.
                 </p>
                 <p>
-					At CV and the crustydemons.club website ("Site"), we understand the importance of keeping personal information private and secure. This privacy policy ("Privacy Policy") describes generally how we manage personal information and safeguard privacy. If you would like more information, please do not hesitate to contact us.
+					At CV and the demonsclub.io website ("Site"), we understand the importance of keeping personal information private and secure. This privacy policy ("Privacy Policy") describes generally how we manage personal information and safeguard privacy. If you would like more information, please do not hesitate to contact us.
                 </p>
                 <p>
 					This Privacy Policy forms part of, and is subject to the provisions of, our Website Terms and Conditions of Use.
