@@ -17,7 +17,7 @@ import NFT10 from '../assets/images/10.png'
 const Carousel = () => {
 
   const sliderSettings = {
-    slidesToShow: 3,
+    slidesToShow: 3,  
     slidesToScroll: 1,
     infinite: true,
     cssEase: "linear",
