@@ -8,8 +8,7 @@ import Web3 from 'web3'
 import WertWidget from '@wert-io/widget-initializer';
 import { signSmartContractData } from '@wert-io/widget-sc-signer';
 import { v4 as uuidv4 } from 'uuid';
-import { Web3Auth } from "@web3auth/web3auth";
-import { CHAIN_NAMESPACES } from "@web3auth/base";
+import Torus from '@toruslabs/torus-embed'
 // import {
 // 	connectWallet,
 // 	getCurrentWalletConnected,
@@ -26,24 +25,11 @@ import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint, shortAddress, 
 
 const PRICE = Number(process.env.REACT_APP_PRICE)
 const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
-const NETWORK = process.env.REACT_APP_NETWORK;
 
-const ethChainConfig = {
-    chainNamespace: CHAIN_NAMESPACES.EIP155,
-    chainId: "0x3",
-    rpcTarget: `https://${NETWORK}.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161`,
-    displayName: `${NETWORK}`,
-    blockExplorer: `https://${NETWORK}.etherscan.io/`,
-    ticker: "ETH",
-    tickerName: "Ethereum",
-};
-// We are initializing with EIP155 namespace which
-// will initialize the modal with ethereum mainnet
-// by default.
-const web3auth = new Web3Auth({
-    chainConfig: ethChainConfig,
-    clientId: process.env.REACT_APP_CLIENT_ID // get your clientId from https://developer.web3auth.io
-});
+const NETWORK = process.env.REACT_APP_NETWORK;
+const CHAIN_ID = Number(process.env.REACT_APP_ROPSTEN_ID)
+const NFT_ADDRESS = '0x502575E38E274beD3Ae4F62BcAFD125E2656E2DE'
+
 
 export default function Test() {
     const { id } = useParams()
@@ -53,18 +39,15 @@ export default function Test() {
     const [initWeb3, setInitWeb3] = useState(false);
     const [minting, setMinting] = useState(false);
     const [buying, setBuying] = useState(false)
-    const [web3authReady, setWeb3authReady] = useState(false)
     const [totalMinted, setTotalMinted] = useState(0);
     const [quantity, setQuantity] = useState(1)
     const [tokenId, setTokenId] = useState(-1)
     const [name, setName] = useState("")
     const [renaming, setRenaming] = useState(false)
 
-    const [status, setStatus] = useState("");
-
     useEffect(() => {
         if (getGroupId(id) === -1) {
-            navigate('/vip', { replace: true })
+            navigate('/', { replace: true })
         }
         if (window.ethereum && !initWeb3) {
             setInitWeb3(true);
@@ -76,7 +59,7 @@ export default function Test() {
                 // }
             });
             window.ethereum.on('networkChanged', function (networkId) {
-                if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
+                if (Number(networkId) !== CHAIN_ID) {
                     toast.warn(`Connect to ${NETWORK} network.`, {
                         position: "top-right",
                         autoClose: 3000,
@@ -88,11 +71,8 @@ export default function Test() {
                 conMetamask();
             });
             conMetamask();
-        } else {
-            initWeb3Modal()
         }
         setTotal()
-        // getRyoshiBalance(account, zksyncWallet);
     }, []);
 
     /// window.ethereum used to get addrss
@@ -108,7 +88,7 @@ export default function Test() {
                 const chainId = await window.ethereum.request({
                     method: "eth_chainId"
                 });
-                if (Number(chainId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
+                if (Number(chainId) !== CHAIN_ID) {
                     console.log(chainId)
                     toast.warn(`Connect to ${NETWORK} network.`, {
                         position: "top-right",
@@ -160,24 +140,21 @@ export default function Test() {
         }
     }
 
-    const initWeb3Modal = async () => {
-        setWeb3authReady(false)
-        await web3auth.initModal();
-        setWeb3authReady(true)
-    }
-
     const login = async () => {
         try {
-            await web3auth.connect();
-            const web3 = new Web3(web3auth.provider);
-            web3auth.provider.on('accountsChanged', function (accounts) {
+            const torus = new Torus();
+            await torus.init();
+            await torus.login(); // await torus.ethereum.enable()
+            const web3 = new Web3(torus.provider);
+            torus.provider.on('accountsChanged', function (accounts) {
                 // if (accounts[0] !== account) {
                 dispatch(setWallet(accounts[0]))
+                window.localStorage.setItem('wallet', accounts[0])
                 console.log("change", accounts[0]);
                 // }
             });
-            web3auth.provider.on('networkChanged', function (networkId) {
-                if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
+            torus.provider.on('networkChanged', function (networkId) {
+                if (Number(networkId) !== CHAIN_ID) {
                     toast.warn(`Connect to ${NETWORK} network.`, {
                         position: "top-right",
                         autoClose: 3000,
@@ -189,23 +166,14 @@ export default function Test() {
             });
             const address = (await web3.eth.getAccounts())[0];
             dispatch(setWallet(address))
+            window.localStorage.setItem('wallet', address)
             const balance = await web3.eth.getBalance(address);
-            console.log(await web3auth.getUserInfo())
+            // console.log(await web3auth.getUserInfo())
             console.log(address, balance)
-        } finally {
+        } catch(err) {
+            // console.log(err.message)
         }
     };
-
-    const logout = async () => {
-        try {
-            await web3auth.logout()
-            dispatch(setWallet(""))
-            console.log('logout')
-
-        } catch (err) {
-            console.log(err.message)
-        }
-    }
 
     const setTotal = async () => {
         let total = await getTotalMinted();
@@ -242,18 +210,18 @@ export default function Test() {
         setBuying(true)
         const privateKey = process.env.REACT_APP_PRIVATE_KEY;
         let groupId = getGroupId(id)
-        if(groupId >= 0){
+        if (groupId >= 0) {
             let signature = await getSignatureForMint(wallet, quantity, groupId)
             const signedData = signSmartContractData({
                 address: wallet, //user wallet
                 commodity: 'ETH',
                 commodity_amount: (PRICE * quantity).toString(),
                 pk_id: 'key1',
-                sc_address: process.env.REACT_APP_NFT_ADDRESS,//ropsten abc contract
+                sc_address: NFT_ADDRESS,//ropsten abc contract
                 sc_id: uuidv4(), // must be unique for any request
                 sc_input_data: signature,
             }, privateKey);
-    
+
             const otherWidgetOptions = {
                 partner_id: process.env.REACT_APP_PARTNER_ID,
                 container_id: 'widget',
@@ -262,12 +230,12 @@ export default function Test() {
                 width: 400,
                 height: 600,
             };
-    
+
             const wertWidget = new WertWidget({
                 ...signedData,
                 ...otherWidgetOptions,
             });
-    
+
             window.open(wertWidget.getRedirectUrl())
         }
         setBuying(false)
@@ -343,7 +311,7 @@ export default function Test() {
                         hideProgressBar: true,
                     });
                 }
-            } else if (web3authReady && wallet) {
+            } else if (wallet) {
                 const privateKey = process.env.REACT_APP_PRIVATE_KEY;
                 let signature = await getSignatureForRename(wallet, tokenId, name)
                 if (signature) {
@@ -352,7 +320,7 @@ export default function Test() {
                         commodity: 'ETH',
                         commodity_amount: RENAME_PRICE,
                         pk_id: 'key1',
-                        sc_address: process.env.REACT_APP_NFT_ADDRESS,//ropsten abc contract
+                        sc_address: NFT_ADDRESS,//ropsten abc contract
                         sc_id: uuidv4(), // must be unique for any request
                         sc_input_data: signature,
                     }, privateKey);
@@ -428,7 +396,7 @@ export default function Test() {
                                         </p>
                                     }
                                 </>
-                                : web3authReady &&
+                                :
                                 <>
                                     <h1 style={{ textAlign: 'center', margin: '0px', marginTop: '10px', color: 'yellow', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         {
@@ -441,7 +409,7 @@ export default function Test() {
                                             </Button>
                                         }
                                     </h1>
-                                    <Button disabled={!web3authReady} className="buy_btn" onClick={handleBuy} >
+                                    <Button disabled={buying} className="buy_btn" onClick={handleBuy} >
                                         {wallet ? `Mint using Cash / Fiat` : `Create Wallet Using Email Address`}
                                     </Button>
 
@@ -474,7 +442,7 @@ export default function Test() {
                             <input type='text' placeholder='New Name (3-20 Characters)' className='name_field' onChange={changeName} />
                         </div>
                         {
-                            ((initWeb3 && wallet) || (web3authReady && wallet)) &&
+                            wallet &&
                             <Button disabled={renaming} className="buy_btn" onClick={rename} >
                                 Rename
                             </Button>

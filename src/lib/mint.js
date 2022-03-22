@@ -12,7 +12,7 @@ const ropstennet = 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa445616
 const mainnet = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 
 // const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
-const NFT_ADDRESS = '0x1d9dF1228849530E1bd54aFdDB59FeDf1D0657c5'
+const NFT_ADDRESS = '0x502575E38E274beD3Ae4F62BcAFD125E2656E2DE'
 const PRICE = process.env.REACT_APP_PRICE
 const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
 
@@ -55,34 +55,35 @@ fetch(Metadata_input)
         // console.log(METADATA_URIS)
     })
 
-    export const mint = async (account, amount, groupId) => {
-        try {
-    
-            let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
-            let tokenCounter = await getTotalMinted()
-            let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
-            console.log('mint tokenUris', mintUris);
-            console.log('groupId', groupId)
-            let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
-            return res.status
-        } catch (err) {
-            console.log(err.message)
-        }
+export const mint = async (account, amount, groupId) => {
+    try {
+
+        let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+        let tokenCounter = await getTotalMinted()
+        let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
+        console.log('mint tokenUris', mintUris);
+        console.log('groupId', groupId)
+        let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
+        return res.status
+    } catch (err) {
+        console.log(err.message)
     }
-    
-    export const getGroupId = (groupId) => {
-        if (!groupId) {
-            return 0
-        }
-        for (let i = 0; i < GROUP_PREFIX.length; i++) {
+}
+
+export const getGroupId = (groupId) => {
+    if (!groupId) {
+        return 0
+    }
+    groupId = groupId.toUpperCase()
+    for (let i = 0; i < GROUP_PREFIX.length; i++) {
+        if (groupId.indexOf(GROUP_PREFIX[i]) === 0 && (Number(groupId.replace(GROUP_PREFIX[i], '')) > 0 && Number(groupId.replace(GROUP_PREFIX[i], '')) <= GROUP_COUNTS[i])) {
             console.log(groupId, Number(groupId.replace(GROUP_PREFIX[i], '')))
-            if (groupId.indexOf(GROUP_PREFIX[i]) === 0 && (Number(groupId.replace(GROUP_PREFIX[i], '')) > 0 && Number(groupId.replace(GROUP_PREFIX[i], '')) <= GROUP_COUNTS[i])) {
-                return GROUP_STARTS[i] + Number(groupId.replace(GROUP_PREFIX[i], '')) - 1
-            }
+            return GROUP_STARTS[i] + Number(groupId.replace(GROUP_PREFIX[i], '')) - 1
         }
-        return -1
     }
-    
+    return -1
+}
+
 
 export const getTotalMinted = async () => {
     try {
@@ -183,6 +184,7 @@ export const getSignatureForMint = async (account, amount, groupId) => {
     const web3 = new Web3(mainnet)
     let tokenCounter = await getTotalMinted()
     let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
+    console.log('tokenUri', mintUris)
     console.log('groupId', groupId)
     let signature = web3.eth.abi.encodeFunctionCall(
         {
@@ -301,7 +303,7 @@ export const getSignatureForRename = async (account, tokenId, name) => {
         console.log(`rename signature ${signature}`)
         return signature
     }
-    else{
+    else {
         return ""
     }
 }

@@ -8,8 +8,7 @@ import Web3 from 'web3'
 import WertWidget from '@wert-io/widget-initializer';
 import { signSmartContractData } from '@wert-io/widget-sc-signer';
 import { v4 as uuidv4 } from 'uuid';
-import { Web3Auth } from "@web3auth/web3auth";
-import { CHAIN_NAMESPACES } from "@web3auth/base";
+import Torus from '@toruslabs/torus-embed'
 // import {
 // 	connectWallet,
 // 	getCurrentWalletConnected,
@@ -26,23 +25,9 @@ import { hasEnoughEth, mint, getTotalMinted, getSignatureForMint } from '../lib/
 
 const PRICE = Number(process.env.REACT_APP_PRICE)
 const NETWORK = process.env.REACT_APP_NETWORK;
+const CHAIN_ID = Number(process.env.REACT_APP_ROPSTEN_ID)
+const NFT_ADDRESS = '0x0f6CcC6a8555eF5Bd6dC92D0eF509e2675217786'
 
-const ethChainConfig = {
-	chainNamespace: CHAIN_NAMESPACES.EIP155,
-	chainId: "0x3",
-	rpcTarget: `https://${NETWORK}.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161`,
-	displayName: `${NETWORK}`,
-	blockExplorer: `https://${NETWORK}.etherscan.io/`,
-	ticker: "ETH",
-	tickerName: "Ethereum",
-};
-// We are initializing with EIP155 namespace which
-// will initialize the modal with ethereum mainnet
-// by default.
-const web3auth = new Web3Auth({
-	chainConfig: ethChainConfig,
-	clientId: process.env.REACT_APP_CLIENT_ID // get your clientId from https://developer.web3auth.io
-});
 
 export default function Home() {
 	const dispatch = useDispatch()
@@ -79,8 +64,7 @@ export default function Home() {
 				conMetamask();
 			});
 			// conMetamask();
-		} else {
-			initWeb3Modal()
+		}else{
 		}
 		setTotal()
 		// getRyoshiBalance(account, zksyncWallet);
@@ -148,52 +132,40 @@ export default function Home() {
 		}
 	}
 
-	const initWeb3Modal = async () => {
-		setWeb3authReady(false)
-		await web3auth.initModal();
-		setWeb3authReady(true)
-	}
-
 	const login = async () => {
-		try {
-			await web3auth.connect();
-			const web3 = new Web3(web3auth.provider);
-			web3auth.provider.on('accountsChanged', function (accounts) {
-				// if (accounts[0] !== account) {
-				dispatch(setWallet(accounts[0]))
-				console.log("change", accounts[0]);
-				// }
-			});
-			web3auth.provider.on('networkChanged', function (networkId) {
-				if (Number(networkId) !== Number(process.env.REACT_APP_ROPSTEN_ID)) {
-					toast.warn(`Connect to ${NETWORK} network.`, {
-						position: "top-right",
-						autoClose: 3000,
-						closeOnClick: true,
-						hideProgressBar: true,
-					});
-					return;
-				}
-			});
-			const address = (await web3.eth.getAccounts())[0];
-			dispatch(setWallet(address))
-			const balance = await web3.eth.getBalance(address);
-			console.log(await web3auth.getUserInfo())
-			console.log(address, balance)
-		} finally {
-		}
-	};
-
-	const logout = async () => {
-		try {
-			await web3auth.logout()
-			dispatch(setWallet(""))
-			console.log('logout')
-
-		} catch (err) {
-			console.log(err.message)
-		}
-	}
+        try {
+            const torus = new Torus();
+            await torus.init();
+            await torus.login(); // await torus.ethereum.enable()
+            const web3 = new Web3(torus.provider);
+            torus.provider.on('accountsChanged', function (accounts) {
+                // if (accounts[0] !== account) {
+                dispatch(setWallet(accounts[0]))
+                window.localStorage.setItem('wallet', accounts[0])
+                console.log("change", accounts[0]);
+                // }
+            });
+            torus.provider.on('networkChanged', function (networkId) {
+                if (Number(networkId) !== CHAIN_ID) {
+                    toast.warn(`Connect to ${NETWORK} network.`, {
+                        position: "top-right",
+                        autoClose: 3000,
+                        closeOnClick: true,
+                        hideProgressBar: true,
+                    });
+                    return;
+                }
+            });
+            const address = (await web3.eth.getAccounts())[0];
+            dispatch(setWallet(address))
+            window.localStorage.setItem('wallet', address)
+            const balance = await web3.eth.getBalance(address);
+            // console.log(await web3auth.getUserInfo())
+            console.log(address, balance)
+        } catch(err) {
+            // console.log(err.message)
+        }
+    };
 
 	const setTotal = async () => {
 		let total = await getTotalMinted();
