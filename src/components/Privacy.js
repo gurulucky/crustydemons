@@ -16,7 +16,7 @@ export default function Privacy() {
 					Club Virtual Pty Ltd (ACN 653 514 231) ("we", "us", “Company", or “CV”) is committed to privacy protection.  
                 </p>
                 <p>
-					CV is the creator and owner of the Demons Club NFT concept, design and all associated intellectual property (“IP”) including the domain name crustydemons.club.  Demons Club is the owner of the Demons Club logo and all associated IP.
+					CV is the creator and owner of the Demons Club NFT concept, design and all associated intellectual property (“IP”) including the domain name demonsclub.io.  Demons Club is the owner of the Demons Club logo and all associated IP.
                 </p>
                 <p>
 					At CV and the demonsclub.io website ("Site"), we understand the importance of keeping personal information private and secure. This privacy policy ("Privacy Policy") describes generally how we manage personal information and safeguard privacy. If you would like more information, please do not hesitate to contact us.
@@ -238,7 +238,7 @@ export default function Privacy() {
                     CONTACTING US ABOUT PRIVACY
                 </h1>
                 <p style={{display: 'block'}}>
-                If you would like more information about the way we manage personal information that we hold about you, or are concerned that we may have breached your privacy, please contact us by email at admin@crustydemons.club or otherwise you may write to us at our postal address, being  <b>PO Box 2026, Clovelly West, NSW, 2031, Australia.</b>
+                If you would like more information about the way we manage personal information that we hold about you, or are concerned that we may have breached your privacy, please contact us by email at admin@demonsclub.io or otherwise you may write to us at our postal address, being  <b>PO Box 2026, Clovelly West, NSW, 2031, Australia.</b>
                 </p>
                 <h1>
                     Access to your personal information

@@ -5,7 +5,7 @@ import Accordion from 'react-bootstrap/Accordion'
 
 const Faq = () => {
     return(
-        <section id="faq" style={{paddingTop:'150px'}}>
+        <section id="faq" className='section_style'>
             <Container>
                 <Row>
                     <div>

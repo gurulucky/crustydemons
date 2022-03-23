@@ -5,7 +5,7 @@ export default function Utility() {
 
     
     return(
-        <section id="utility" style={{paddingTop:'150px'}}>
+        <section id="utility" className='section_style'>
             <Container id="backeffect" >
                 <h1>Demons Club Utility</h1>
                 <h2 className="caption">A high-resolution, one-of-a-kind NFT image that you can use for personal use as you wish is just the beginning.  </h2>

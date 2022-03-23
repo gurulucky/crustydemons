@@ -7,7 +7,7 @@ import '../index.css';
 
 export default function Term() {
     return(
-        <section id="term">
+        <section id="term" className='section_style'>
             <Container>
                 <h1>
 					<Link to="/">TERMS & CONDITIONS</Link>

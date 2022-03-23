@@ -12,7 +12,7 @@ import Team9 from '../assets/images/3.png'
 
 export default function Meet() {
 	return(
-		<section id="meet" style={{paddingTop:'150px'}}>
+		<section id="meet" className='section_style'>
 			<Container>
 				<Row>
 					<div className="meet_content">

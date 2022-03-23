@@ -8,7 +8,7 @@ import roadmap5 from '../assets/images/5.png'
 
 export default function Roadmap(){
     return(
-        <section id="roadmap" style={{paddingTop:'150px'}}>
+        <section id="roadmap" className='section_style'>
             <Container>
                 <Row>
                     <div>
