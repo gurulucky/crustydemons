@@ -366,6 +366,27 @@ input[type=number] {
     cursor: pointer;
     border-bottom-left-radius: 4rem !important;
     border-top-right-radius: 4rem !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.buy_btn input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;   
+    cursor: inherit;
+    display: block;
 }
 
 .buy_btn:hover {

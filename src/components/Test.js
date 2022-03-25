@@ -28,7 +28,7 @@ const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
 
 const NETWORK = process.env.REACT_APP_NETWORK;
 const CHAIN_ID = Number(process.env.REACT_APP_ROPSTEN_ID)
-const NFT_ADDRESS = '0x502575E38E274beD3Ae4F62BcAFD125E2656E2DE'
+const NFT_ADDRESS = '0x211DE30c54d8A8C28D73fC3804ed47a96DE4C01c'
 
 
 export default function Test() {

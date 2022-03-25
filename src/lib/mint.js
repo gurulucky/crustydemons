@@ -12,7 +12,7 @@ const ropstennet = 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa445616
 const mainnet = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 
 // const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
-const NFT_ADDRESS = '0x502575E38E274beD3Ae4F62BcAFD125E2656E2DE'
+const NFT_ADDRESS = '0x211DE30c54d8A8C28D73fC3804ed47a96DE4C01c'
 const PRICE = process.env.REACT_APP_PRICE
 const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
 
@@ -64,6 +64,22 @@ export const mint = async (account, amount, groupId) => {
         console.log('mint tokenUris', mintUris);
         console.log('groupId', groupId)
         let res = await abc_contract.methods.mint(account, mintUris, groupId).send({ from: account, value: window.web3.utils.toWei((PRICE * amount).toString(), "ether") })
+        return res.status
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+export const giveaway = async (account, addresses, groupId) => {
+    try {
+        let amount = addresses.length
+        let abc_contract = new window.web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+        let tokenCounter = await getTotalMinted()
+        let mintUris = METADATA_URIS.slice(tokenCounter, tokenCounter + amount);
+        console.log('addresses', addresses)
+        console.log('mint tokenUris', mintUris);
+        console.log('groupId', groupId)
+        let res = await abc_contract.methods.giveaway(addresses, mintUris, groupId).send({ from: account })
         return res.status
     } catch (err) {
         console.log(err.message)
