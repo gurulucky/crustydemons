@@ -1,9 +1,9 @@
 import Web3 from 'web3'
 import { NFT_ABI } from './abi.js'
 // import { METADATA_URIS } from './ABC2-M_summary.js'
-import Metadata_input from './Crusty Demons Club_summary.txt'
-import High_res_input from './Crusty Demons Club_Hi-Res_ipfsURI.txt'
-import Rarity_input from './Crusty Demons Club_Rarity_Summary.txt'
+import Metadata_input from './DC_summary.txt'
+import High_res_input from './DC_Hi-Res_ipfsURI.txt'
+import Rarity_input from './DC_Rarity_Summary.txt'
 import { pinJSONToIPFS } from './pinata.js'
 import axios from 'axios'
 
@@ -11,8 +11,8 @@ const rinkebynet = 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa445616
 const ropstennet = 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 const mainnet = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 
-// const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
-const NFT_ADDRESS = '0x211DE30c54d8A8C28D73fC3804ed47a96DE4C01c'
+const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
+// const NFT_ADDRESS = '0x211DE30c54d8A8C28D73fC3804ed47a96DE4C01c'
 const PRICE = process.env.REACT_APP_PRICE
 const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
 
@@ -103,7 +103,7 @@ export const getGroupId = (groupId) => {
 
 export const getTotalMinted = async () => {
     try {
-        let web3 = new Web3(ropstennet)
+        let web3 = new Web3(mainnet)
         let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
         let tokenCounter = Number(await abc_contract.methods.totalSupply().call());
         console.log('totalminted', tokenCounter)
@@ -114,7 +114,7 @@ export const getTotalMinted = async () => {
 }
 
 export const getTokenUris = async (tokenIds) => {
-    let web3 = new Web3(ropstennet)
+    let web3 = new Web3(mainnet)
     let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenUris = []
     for (let i = 0; i < tokenIds.length; i++) {
@@ -233,7 +233,7 @@ export const getSignatureForMint = async (account, amount, groupId) => {
 }
 
 export const getTokenIdsOf = async (account) => {
-    let web3 = new Web3(ropstennet)
+    let web3 = new Web3(mainnet)
     let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     let tokenIds = await abc_contract.methods.tokensOfOwner(account).call();
 
@@ -242,7 +242,7 @@ export const getTokenIdsOf = async (account) => {
 
 export const getNewMetadataURI = async (tokenId, name) => {
     let metadata, metadataURI, tokenURI
-    let web3 = new Web3(ropstennet)
+    let web3 = new Web3(mainnet)
     let abc_contract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
     try {
         tokenURI = await abc_contract.methods.tokenURI(tokenId).call()

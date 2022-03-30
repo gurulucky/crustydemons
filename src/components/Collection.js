@@ -39,7 +39,7 @@ const NftItem = ({ nft }) => {
                             </div>
                         </Button>
                     </a>
-                    <a href={`https://testnets.opensea.io/assets/${NFT_ADDRESS}/${nft.tokenId}`} target='_blank'>
+                    <a href={`https://opensea.io/assets/${NFT_ADDRESS}/${nft.tokenId}`} target='_blank'>
                         <img src='/opensea.png' width='30px' height='30px' />
                     </a>
 

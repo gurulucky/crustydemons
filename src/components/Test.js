@@ -27,8 +27,8 @@ const PRICE = Number(process.env.REACT_APP_PRICE)
 const RENAME_PRICE = process.env.REACT_APP_RENAME_PRICE
 
 const NETWORK = process.env.REACT_APP_NETWORK;
-const CHAIN_ID = Number(process.env.REACT_APP_ROPSTEN_ID)
-const NFT_ADDRESS = '0x211DE30c54d8A8C28D73fC3804ed47a96DE4C01c'
+const CHAIN_ID = Number(process.env.REACT_APP_MAINNET_ID)
+const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
 
 
 export default function Test() {
@@ -170,7 +170,7 @@ export default function Test() {
             const balance = await web3.eth.getBalance(address);
             // console.log(await web3auth.getUserInfo())
             console.log(address, balance)
-        } catch(err) {
+        } catch (err) {
             // console.log(err.message)
         }
     };
@@ -224,9 +224,10 @@ export default function Test() {
 
             const otherWidgetOptions = {
                 partner_id: process.env.REACT_APP_PARTNER_ID,
-                container_id: 'widget',
+                container_id: 'wert-widget',
                 click_id: uuidv4(), // unique id of purhase in your system
-                origin: 'https://sandbox.wert.io', // this option needed only for this example to work
+                // origin: 'https://sandbox.wert.io', // this option needed only for this example to work
+                origin: 'https://widget.wert.io', // this option needed only for this example to work
                 width: 400,
                 height: 600,
             };
@@ -327,9 +328,10 @@ export default function Test() {
 
                     const otherWidgetOptions = {
                         partner_id: process.env.REACT_APP_PARTNER_ID,
-                        container_id: 'widget',
+                        container_id: 'wert-widget',
                         click_id: uuidv4(), // unique id of purhase in your system
-                        origin: 'https://sandbox.wert.io', // this option needed only for this example to work
+                        // origin: 'https://sandbox.wert.io', // this option needed only for this example to work
+                        origin: 'https://widget.wert.io', // this option needed only for this example to work
                         width: 400,
                         height: 600,
                     };
@@ -424,7 +426,7 @@ export default function Test() {
                             </p>
                         </Link >
                     }
-                    <a href="https://ropsten.etherscan.io/address/0x53254267052c7797f1275C9E53bD22accd8a1c48" className="view_contract" target="_blank"><p>View Contract</p>  </a>
+                    <a href={`https://etherscan.io/address/${NFT_ADDRESS}`} className="view_contract" target="_blank"><p>View Contract</p>  </a>
                 </div >
                 <div className='mint_section rename_section_body'>
                     <div className="mint_section_body">
