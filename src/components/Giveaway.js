@@ -14,7 +14,8 @@ import { setWallet } from '../actions/manager';
 import { giveaway, getTotalMinted } from '../lib/mint';
 
 const NETWORK = process.env.REACT_APP_NETWORK;
-const CHAIN_ID = Number(process.env.REACT_APP_ROPSTEN_ID)
+const CHAIN_ID = Number(process.env.REACT_APP_MAINNET_ID)
+const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS
 
 
 export default function Giveaway() {
@@ -150,7 +151,7 @@ export default function Giveaway() {
                 </div>
                 <div className="mint_section">
                     <div className="mint_section_body">
-                        <p>Give a Demons</p>
+                        <p>Give a Demon</p>
                         <p> Total Minted: < span className="mint_color" > {`${totalMinted} / 10000`} </span></p>
                         <p> <span className="mint_color" > Mint </span> Demons Club NFT</p>
 
@@ -161,7 +162,7 @@ export default function Giveaway() {
                             <input type="file" name="myfile" onChange={loadAddress} />
                         </Button>
                         {
-                            addresses.map(address => <p style={{color:'white', textAlign:'center'}}>{address}</p>)
+                            addresses.map(address => <p style={{ color: 'white', textAlign: 'center' }}>{address}</p>)
                         }
                         {
                             initWeb3 &&
@@ -177,7 +178,7 @@ export default function Giveaway() {
                             </>
                         }
                     </div >
-                    <a href="https://ropsten.etherscan.io/address/0x53254267052c7797f1275C9E53bD22accd8a1c48" className="view_contract" target="_blank"><p>View Contract</p>  </a>
+                    <a href={`https://etherscan.io/address/${NFT_ADDRESS}`} className="view_contract" target="_blank"><p>View Contract</p>  </a>
                 </div >
             </div>
         </section >

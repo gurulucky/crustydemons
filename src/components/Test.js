@@ -41,6 +41,7 @@ export default function Test() {
     const [buying, setBuying] = useState(false)
     const [totalMinted, setTotalMinted] = useState(0);
     const [quantity, setQuantity] = useState(1)
+    const [showRename, setShowRename] = useState(false)
     const [tokenId, setTokenId] = useState(-1)
     const [name, setName] = useState("")
     const [renaming, setRenaming] = useState(false)
@@ -359,6 +360,10 @@ export default function Test() {
         setRenaming(false)
     }
 
+    const onShowRename = () => {
+        setShowRename(!showRename)
+    }
+
     return (
         <section id="mint" style={{ paddingTop: '3vw' }}>
             <div className='my_container'>
@@ -431,29 +436,31 @@ export default function Test() {
                 <div className='mint_section rename_section_body'>
                     <div className="mint_section_body">
                         {/* <p> <span className="mint_color" >Rename </span>your Demons Club NFT</p> */}
-                        <div className='rename_field'>
+                        <div className='rename_field' onClick={onShowRename}>
                             <p>< span className="mint_color" >Rename your&nbsp;</span></p>
                             <p>Demons Club NFT</p>
                         </div>
-                        <div className='rename_field'>
-                            <p>Rename Price:&nbsp;</p>
-                            <p>< span className="mint_color" > {`${RENAME_PRICE} Eth + Gas Fee`} </span></p>
+                        <div hidden={!showRename}>
+                            <div className='rename_field'>
+                                <p>Rename Price:&nbsp;</p>
+                                <p>< span className="mint_color" > {`${RENAME_PRICE} Eth + Gas Fee`} </span></p>
+                            </div>
+                            <div className="rename_field">
+                                <input type='number' placeholder='Token ID' className='tokenId_field' onChange={changeTokenId} />
+                                <input type='text' placeholder='New Name (3-20 Characters)' className='name_field' onChange={changeName} />
+                            </div>
+                            {
+                                wallet &&
+                                <Button disabled={renaming} className="buy_btn" onClick={rename} >
+                                    Rename
+                                </Button>
+                            }
+                            {
+                                renaming && < p style={{ textAlign: 'center', color: 'red' }}>
+                                    Processing - Please Wait
+                                </p>
+                            }
                         </div>
-                        <div className="rename_field">
-                            <input type='number' placeholder='Token ID' className='tokenId_field' onChange={changeTokenId} />
-                            <input type='text' placeholder='New Name (3-20 Characters)' className='name_field' onChange={changeName} />
-                        </div>
-                        {
-                            wallet &&
-                            <Button disabled={renaming} className="buy_btn" onClick={rename} >
-                                Rename
-                            </Button>
-                        }
-                        {
-                            renaming && < p style={{ textAlign: 'center', color: 'red' }}>
-                                Processing - Please Wait
-                            </p>
-                        }
                     </div>
                 </div>
             </div>
