@@ -358,9 +358,12 @@ input[type=number] {
 
 .buy_btn {
     font-weight: 600 !important;
-    width: 100%;
+    width: 50%;
     margin-top: 1vw;
     margin-bottom: 1vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding:  10px !important;
     background-image: linear-gradient(to right, rgb(116 116 116), rgb(52 52 52));
     border: none !important;
     cursor: pointer;

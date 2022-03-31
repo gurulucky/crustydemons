@@ -390,7 +390,7 @@ export default function Test() {
                             <Button value={30} onClick={(e) => setQuantity(e.target.value)} className="mint_counter_btn" > 30 </Button>
                         </div>
                     </div>
-                    <div style={{ marginLeft: 'auto', marginRight: 'auto' }} >
+                    <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                         {
                             initWeb3 ?
                                 <>
@@ -436,7 +436,7 @@ export default function Test() {
                 <div className='mint_section rename_section_body'>
                     <div className="mint_section_body">
                         {/* <p> <span className="mint_color" >Rename </span>your Demons Club NFT</p> */}
-                        <div className='rename_field' onClick={onShowRename}>
+                        <div className='rename_field' style={{ cursor: 'pointer' }} onClick={onShowRename}>
                             <p>< span className="mint_color" >Rename your&nbsp;</span></p>
                             <p>Demons Club NFT</p>
                         </div>
