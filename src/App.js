@@ -28,7 +28,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/:id" element={<Test />} />
           <Route path='/collection' element={<Collection />} />
-          <Route path='/admin' element={<Giveaway />} />
+          <Route path='/private/admin' element={<Giveaway />} />
         </Routes>
         <ToastContainer />
       </Router>
