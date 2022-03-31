@@ -129,6 +129,7 @@ export default function Giveaway() {
         let content = fileReader.result;
         // let text = deleteLines(content, 3);
         content = cleanContent(content);
+        content = content.filter(item => item !== "")
         console.log(content)
         setAddresses(content)
     };
@@ -156,7 +157,7 @@ export default function Giveaway() {
                         <p> <span className="mint_color" > Mint </span> Demons Club NFT</p>
 
                     </div>
-                    <div style={{ marginLeft: 'auto', marginRight: 'auto' }} >
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Button className="buy_btn" >
                             {`Load addresses`}
                             <input type="file" name="myfile" onChange={loadAddress} />
