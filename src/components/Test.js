@@ -118,7 +118,7 @@ export default function Test() {
                                 setTotal();
                             }
                         } else {
-                            toast.warn(`Insufficient funds. Check your wallet balance. You need 0.05 ETH + GAS fee at ${accounts[0]}`, {
+                            toast.warn(`Insufficient funds. Check your wallet balance. You need ${PRICE} ETH + GAS fee at ${accounts[0]}`, {
                                 position: "top-right",
                                 autoClose: 3000,
                                 closeOnClick: true,
