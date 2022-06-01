@@ -75,7 +75,7 @@ const Subscribe = () => {
                                     <Nav.Link href="http://www.instagram.com/crustysofficial" target="_blank"><FaInstagram/></Nav.Link> 
                                     <Nav.Link href="http://www.youtube.com/channel/UCI01qaaJwf1dCqOsL51DBfQ" target="_blank"><FaYoutube /></Nav.Link>
                                     <Nav.Link href="http://www.tiktok.com/@crustydemonsofficial" target="_blank"><FaTiktok /></Nav.Link> 
-									<Nav.Link href="https://discord.gg/7KuhnzDWvm" target="_blank"><FaDiscord /></Nav.Link>									
+									<Nav.Link href="https://discord.gg/pC5AuJdQHF" target="_blank"><FaDiscord /></Nav.Link>									
                                 </p>
                             </div>
                         </Col>
